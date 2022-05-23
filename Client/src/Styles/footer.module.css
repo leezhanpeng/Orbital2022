@@ -1,0 +1,13 @@
+.footer {
+    background-color: rgb(98, 98, 255);
+    display: flex;
+    justify-content: center;
+    height: 120px;
+    flex-direction: column;
+    box-shadow: 0px 0px 5px;
+}
+
+.footercontent {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}

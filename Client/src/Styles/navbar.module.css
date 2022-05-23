@@ -1,0 +1,81 @@
+.navbar {
+    padding: 0% 200px;
+    background: rgb(255, 255, 255);
+    height: 90px;
+    box-shadow: 0px 0px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0px;
+}
+
+.weblogo {
+    width: 150px;
+    height: 120px;
+}
+
+.navlogo {
+    width: 50px;
+    height: 50px;
+    filter: invert(30%)
+}
+
+.navicons {
+    display: flex;
+}
+
+.navicons li {
+    list-style: none;
+    padding: 0px 25px 0px 25px;
+}
+
+.navicons li a{
+    text-decoration: none;
+}
+
+.navicons li a:hover{
+    cursor:pointer;
+    transition: 0.3s;
+    filter: invert(80%);
+}
+
+.search {
+    background-color: #777777;
+    width: 300px;
+    height: 44px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchinput {
+    all: unset;
+    font: 16px system-ui;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    padding: 6px 10px;
+}
+
+.searchinput::placeholder {
+    color: rgb(36, 36, 36);
+    opacity: 0.7;
+    font-weight: 700;
+}
+
+.searchbutton {
+    all: unset;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+}
+
+.searchbuttonimg {
+    color: #fff;
+    fill: currentColor;
+    width: 24px;
+    height: 24px;
+    padding: 10px;
+}
