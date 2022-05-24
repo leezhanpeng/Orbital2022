@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const dbURI = 'mongodb+srv://playbay:orbital1232@playbaybackend.l2ib1.mongodb.net/?retryWrites=true&w=majority';
+const dbURI = 'mongodb+srv://playbay:orbital1232@playbaybackend.l2ib1.mongodb.net/PlayBay?retryWrites=true&w=majority';
 
 mongoose.connect(dbURI)
     .then((result) => console.log('Connected to MongoDB'))
