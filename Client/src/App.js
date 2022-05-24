@@ -1,7 +1,6 @@
 import {
-  BrowserRouter as Router,
   Route,
-  Switch
+  Routes
 } from 'react-router-dom';
 import Navbar from './Components/Navbar.js';
 import Footer from './Components/Footer.js';
@@ -12,25 +11,16 @@ import Games from "./Pages/Games.js"
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Switch>
+    <div>      
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/games" element={<Games />} />
+    </Routes>
+    <Footer />
+  </div>
 
-        <Route exact path="/">
-          <Homepage />
-        </Route>
-
-        <Route exact path="/profile">
-          <Profile />
-        </Route>
-
-        <Route exact path="/games">
-          <Games />
-        </Route>
-
-      </Switch>
-      <Footer />
-    </Router>
   );
 }
 
