@@ -11,6 +11,7 @@ const newsSchema = new Schema({
         required: true
     }
 
+
 }, { timestamps: true });
 
 const Newsletter = mongoose.model('Newsletter', newsSchema);
