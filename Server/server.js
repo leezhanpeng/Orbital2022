@@ -7,6 +7,8 @@ mongoose.connect(dbURI)
     .then((result) => console.log('Connected to MongoDB'))
     .catch((err) => console.log(err));
 
+
+app.use(express.urlencoded({ extended: true }));
 const Newsletter = require('./newsletter');
 
 
@@ -20,14 +22,17 @@ app.get('/all-newsletters', (req, res) => {
         });
 })
 
-// app.get('/add-newletter', (req, res) => {
-//     const news = new News({
-//         title: 'Welcome to PlayBay!',
-//         content: 'We are excited!'
-//     });
+app.post('/add-newsletter', (req, res) => {
+    const newsletter = new Newsletter(req.body);
 
-//     blog.save()
-// })
+    newsletter.save()
+        .then((result) => {
+            console.log("newsletter uploaded");
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+})
 
 // app.get('/api/customers', (req, res) => {
 //     const customers = [
