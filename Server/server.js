@@ -13,7 +13,7 @@ const Newsletter = require('./newsletter');
 
 
 app.get('/all-newsletters', (req, res) => {
-    Newsletter.find()
+    Newsletter.find().sort({ createdAt: -1 })
         .then((result) => {
             res.json(result);
         })
@@ -28,6 +28,7 @@ app.post('/add-newsletter', (req, res) => {
     newsletter.save()
         .then((result) => {
             console.log("newsletter uploaded");
+            res.redirect("/");
         })
         .catch((err) => {
             console.log(err);
