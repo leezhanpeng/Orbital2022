@@ -18,7 +18,7 @@ const HomepageContent = () => {
 
     fetchData();
 
-  }, [])
+  }, []);
 
 
 
@@ -29,7 +29,7 @@ const HomepageContent = () => {
 
         <div className={styles["welcomebox"]}>
           <a className={styles["welcomeboxtext"]}>
-            Hello, aougfnboafg!
+            Hello, NAME!
           </a>
         </div>
 
@@ -43,8 +43,8 @@ const HomepageContent = () => {
 
           {
           news.map((news) => (
-          <div className={styles["news"]}>
-            <div><img src={helloimg} className={styles["newsimg"]}></img></div>
+          <div key={news.id} className={styles["news"]}>
+            <div><img src={news.imagebase64} className={styles["newsimg"]}></img></div>
 
             <div className={styles["newstext"]}>
 
