@@ -26,12 +26,12 @@
 }
 
 .header {
-    margin-bottom: 150px;
+    margin-bottom: 80px;
     font-weight: 900;
 }
 
 .form {
-    height: 250px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     width: 60%;
