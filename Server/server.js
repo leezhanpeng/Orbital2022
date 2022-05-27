@@ -6,11 +6,11 @@ const dbURI = 'mongodb+srv://playbay:orbital1232@playbaybackend.l2ib1.mongodb.ne
 mongoose.connect(dbURI)
     .then((result) => console.log('Connected to MongoDB'))
     .catch((err) => console.log(err));
+    
+app.use(express.urlencoded({ extended: true, limit: '500mb' }));
+app.use(express.json({limit: '500mb'}));
 
-
-app.use(express.urlencoded({ extended: true }));
 const Newsletter = require('./newsletter');
-
 
 app.get('/all-newsletters', (req, res) => {
     Newsletter.find().sort({ createdAt: -1 })
@@ -24,7 +24,6 @@ app.get('/all-newsletters', (req, res) => {
 
 app.post('/add-newsletter', (req, res) => {
     const newsletter = new Newsletter(req.body);
-
     newsletter.save()
         .then((result) => {
             console.log("newsletter uploaded");

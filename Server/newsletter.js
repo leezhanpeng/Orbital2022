@@ -9,6 +9,14 @@ const newsSchema = new Schema({
     content: {
         type: String,
         required: true
+    },
+    imgname: {
+        type: String,
+        required: true
+    },
+    imagebase64: {
+        type: String,
+        required: true
     }
 
 
