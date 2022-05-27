@@ -34,9 +34,13 @@
     height: 400px;
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 80%;
     justify-content: space-between;
     align-items: center;
+}
+
+.titles {
+    padding-left: 10%;
 }
 
 .input {
@@ -48,14 +52,24 @@
 
 .titlebox {
     height: 30px;
+    padding-right: 10.1%;
 }
 
 .textbox {
     height: 100px;
     width: 172px;
+    padding-right: 10%;
+}
+
+.imguploadbtn {
+    padding-right: 0.5%;
 }
 
 .btn {
     width: 70px;
     text-align: center;
+}
+
+.invisinput {
+    display: none;
 }
