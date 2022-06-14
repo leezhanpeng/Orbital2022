@@ -10,6 +10,8 @@ import Profile from "./Pages/Profile.js";
 import Games from "./Pages/Games.js";
 import AddNews from "./Pages/AddNews.js";
 
+import Tetris from "./Games/Tetris.js";
+
 function App() {
   return (
     <div>      
@@ -19,6 +21,8 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/games" element={<Games />} />
       <Route path="/add-news" element={<AddNews />} />
+
+      <Route path="/games/tetris" element={<Tetris />} />
     </Routes>
     <Footer />
   </div>

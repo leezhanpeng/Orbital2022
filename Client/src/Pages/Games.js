@@ -1,10 +1,9 @@
 import React from 'react'
+import GamesContent from '../Components/GamesContent'
 
 const Games = () => {
   return (
-    <div>
-        Games
-    </div>
+    <GamesContent />
   )
 }
 
