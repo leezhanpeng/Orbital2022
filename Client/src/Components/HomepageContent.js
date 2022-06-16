@@ -62,7 +62,7 @@ const HomepageContent = () => {
 
 
 
-          <div className={styles["news"]}>
+          <div key={"fakeid1"} className={styles["news"]}>
             <div><img src={helloimg} className={styles["newsimg"]}></img></div>
 
             <div className={styles["newstext"]}>
@@ -79,7 +79,7 @@ const HomepageContent = () => {
 
 
 
-          <div className={styles["news"]}>
+          <div key={"fakeid2"} className={styles["news"]}>
             <div><img src={welcomeimg} className={styles["newsimg"]}></img></div>
 
             <div className={styles["newstext"]}>
