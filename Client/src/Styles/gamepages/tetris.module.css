@@ -1,0 +1,11 @@
+.client {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tetris {
+  width: 800px;
+  height: 600px;
+  margin: 80px;
+}

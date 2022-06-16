@@ -18,27 +18,27 @@ const GamesContent = () => {
           <a href="/games/tetris" className={styles["adivforgame"]}>
             <div className={styles["game"]}>
               <div><img src={tpiece} className={styles["gameimg"]}></img></div>
-              <a className={styles["gametitle"]}>
+              <div className={styles["gametitle"]}>
                 Tetris Line Clear 40L
-              </a>
+              </div>
             </div>
           </a>
 
           <a href="#" className={styles["adivforgame"]}>
             <div className={styles["game"]}>
               <div><img src={imgholder} className={styles["gameimg"]}></img></div>
-              <a className={styles["gametitle"]}>
+              <div className={styles["gametitle"]}>
                 TO BE CONFIRMED
-              </a>
+              </div>
             </div>
           </a>
 
           <a href="#" className={styles["adivforgame"]}>
             <div className={styles["game"]}>
               <div><img src={imgholder} className={styles["gameimg"]}></img></div>
-              <a className={styles["gametitle"]}>
+              <div className={styles["gametitle"]}>
                 TO BE CONFIRMED
-              </a>
+              </div>
             </div>
           </a>
 
