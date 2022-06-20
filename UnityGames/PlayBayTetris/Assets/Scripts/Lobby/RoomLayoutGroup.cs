@@ -18,9 +18,44 @@ public class RoomLayoutGroup : MonoBehaviourPunCallbacks
         get { return _roomListingButtons; }
     }
 
+    private List<RoomInfo> AllRooms = new List<RoomInfo>();
+
     public override void OnRoomListUpdate(List<RoomInfo> rooms)
     {
-        foreach (RoomInfo room in rooms)
+        if (rooms.Count != 0)
+        {
+            bool removed = false;
+
+            foreach (RoomInfo room in rooms)
+            {
+                if (room.MaxPlayers == 0)
+                {
+                    int index = RoomListingButtons.FindIndex(x => x.RoomName == room.Name);
+                    if (index != -1)
+                    {
+                    AllRooms.RemoveAt(index);
+                    removed = true;
+                    }
+                }
+            }
+            if (!removed)
+            {
+                if (rooms.Count > 1)
+                {
+                    AllRooms = rooms;
+                }
+                else
+                {
+                    AllRooms.Add(rooms[0]);
+                }
+            }
+        }
+
+        else
+        {
+            AllRooms.Clear();
+        }
+        foreach (RoomInfo room in AllRooms)
         {
             RoomReceived(room);
         }
@@ -31,6 +66,7 @@ public class RoomLayoutGroup : MonoBehaviourPunCallbacks
     private void RoomReceived(RoomInfo room)
     {
         int index = RoomListingButtons.FindIndex(x => x.RoomName == room.Name);
+
 
         if (index == -1)
         {

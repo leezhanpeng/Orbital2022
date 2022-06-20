@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
-public class CreateRoom : MonoBehaviour
+public class CreateRoom : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private Text _roomName;
@@ -18,6 +19,15 @@ public class CreateRoom : MonoBehaviour
     [SerializeField] GameObject loaderCircle;
     [SerializeField] GameObject loaderProgress;
     [SerializeField] GameObject emptyRoomNamePopup;
+    [SerializeField] TextMeshProUGUI emptyRoomNamePopupText;
+
+    private List<RoomInfo> allRooms = new List<RoomInfo>();
+
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        allRooms = roomList;
+    }
 
     public void OnClick_CreateRoom()
     {
@@ -25,10 +35,22 @@ public class CreateRoom : MonoBehaviour
         {
             emptyRoomNamePopup.SetActive(true);
             MainCanvasManager.Instance.RoomNameEmptyPopup.transform.SetAsLastSibling();
+            emptyRoomNamePopupText.text = "Please create room with a room name.";
+            return;
         }
 
         else
-        {
+        {   
+            foreach (RoomInfo room in allRooms)
+            {
+                if (room.Name == RoomName.text)
+                {
+                    emptyRoomNamePopup.SetActive(true);
+                    MainCanvasManager.Instance.RoomNameEmptyPopup.transform.SetAsLastSibling();
+                    emptyRoomNamePopupText.text = "Room name already exist. Please create room with another room name.";
+                    return;
+                }
+            }
             RoomOptions roomOptions = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 20 };
 
             if (PhotonNetwork.CreateRoom(RoomName.text, roomOptions, TypedLobby.Default))
@@ -45,12 +67,7 @@ public class CreateRoom : MonoBehaviour
         }
     }
 
-    private void OnPhotonCreateRoomFailed(object[] codeAndMessage)
-    {
-        print("Create room failed: " + codeAndMessage[1]);
-    }
-
-    private void OnCreatedRoom()
+    public override void OnCreatedRoom()
     {
         print("Room created successfully.");
     }

@@ -66,8 +66,14 @@ public class EndScreenLayoutGroup : MonoBehaviourPunCallbacks
 
     private void BackToRoom()
     {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = !PhotonNetwork.CurrentRoom.IsOpen;
+            PhotonNetwork.CurrentRoom.IsVisible = PhotonNetwork.CurrentRoom.IsOpen;
+        }
         SceneManager.UnloadScene(1);
     }
+
     private void Done()
     {
         endScreen.SetActive(false);
