@@ -2054,6 +2054,7 @@ MonoBehaviour:
   loaderCircle: {fileID: 1409359173}
   loaderProgress: {fileID: 1448776475}
   emptyRoomNamePopup: {fileID: 1066999683}
+  emptyRoomNamePopupText: {fileID: 835365547}
 --- !u!1 &589647250
 GameObject:
   m_ObjectHideFlags: 0

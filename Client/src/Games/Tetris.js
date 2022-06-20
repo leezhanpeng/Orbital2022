@@ -4,10 +4,10 @@ import styles from "../Styles/gamepages/tetris.module.css";
 
 function Tetris() {
   const { unityProvider } = useUnityContext({
-    loaderUrl: "../Build/WebGLBuild.loader.js",
-    dataUrl: "../Build/WebGLBuild.data",
-    frameworkUrl: "../Build/WebGLBuild.framework.js",
-    codeUrl: "../Build/WebGLBuild.wasm",
+    loaderUrl: "../Build/WebGLBuildTetris.loader.js",
+    dataUrl: "../Build/WebGLBuildTetris.data",
+    frameworkUrl: "../Build/WebGLBuildTetris.framework.js",
+    codeUrl: "../Build/WebGLBuildTetris.wasm",
   });
 
   return (

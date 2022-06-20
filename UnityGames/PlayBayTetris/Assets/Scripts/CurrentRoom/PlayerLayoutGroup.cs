@@ -7,7 +7,6 @@ using Photon.Realtime;
 
 public class PlayerLayoutGroup : MonoBehaviourPunCallbacks
 {
-    private PhotonView PhotonView;
     [SerializeField] Text visibilityTxt;
 
     [SerializeField] private GameObject hostLeavePopup;
@@ -109,7 +108,6 @@ public class PlayerLayoutGroup : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonView = GetComponent<PhotonView>();
             PhotonNetwork.CurrentRoom.IsOpen = !PhotonNetwork.CurrentRoom.IsOpen;
             PhotonNetwork.CurrentRoom.IsVisible = PhotonNetwork.CurrentRoom.IsOpen;
             if (PhotonNetwork.CurrentRoom.IsOpen)
@@ -120,7 +118,7 @@ public class PlayerLayoutGroup : MonoBehaviourPunCallbacks
             {
                 visibilityTxt.text = "Closed";
             }
-            PhotonView.RPC("SendVisibility", Photon.Pun.RpcTarget.Others);
+            base.photonView.RPC("SendVisibility", RpcTarget.Others);
         }
     }
 
