@@ -7,7 +7,7 @@ import styles from "../Styles/navbar.module.css"
 const Navbar = () => {
   return (
     <div className={styles["navbar"]}>
-        <a href="/"><img className={styles["weblogo"]} src={logo} alt="logo"></img></a>
+        <a href="/home"><img className={styles["weblogo"]} src={logo} alt="logo"></img></a>
 
         <form className={styles["search"]}>
           <input className={styles["searchinput"]} type="search" placeholder="Search for game..."></input>
