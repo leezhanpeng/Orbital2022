@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const dbURI = 'mongodb+srv://playbay:orbital1232@playbaybackend.l2ib1.mongodb.net/PlayBay?retryWrites=true&w=majority';
 
 mongoose.connect(dbURI)
@@ -10,7 +11,7 @@ mongoose.connect(dbURI)
 app.use(express.urlencoded({ extended: true, limit: '500mb' }));
 app.use(express.json({limit: '500mb'}));
 
-const Newsletter = require('./newsletter');
+const Newsletter = require('./schemas/newsletter.js');
 
 app.get('/all-newsletters', (req, res) => {
     Newsletter.find().sort({ createdAt: -1 })
@@ -24,6 +25,7 @@ app.get('/all-newsletters', (req, res) => {
 
 app.post('/add-newsletter', (req, res) => {
     const newsletter = new Newsletter(req.body);
+
     newsletter.save()
         .then((result) => {
             console.log("newsletter uploaded");
@@ -34,13 +36,23 @@ app.post('/add-newsletter', (req, res) => {
         })
 })
 
-// app.get('/api/customers', (req, res) => {
-//     const customers = [
-//         {id: 1, firstName: 'hi'}
-//     ];
+const User = require('./schemas/user.js');
 
-//     res.json(customers);
-// });
+app.post('/new-user', async (req, res) => {
+    const user = new User(req.body);
+    user.password = await bcrypt.hash(user.password, 10);
+    user.save()
+        .then((result) => {
+            console.log("New account created.");
+            res.redirect("/signupsuccessful");
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+})
+
+
+
 
 const PORT = 5000;
 
