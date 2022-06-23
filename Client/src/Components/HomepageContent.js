@@ -1,10 +1,12 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+
 import styles from "../Styles/homepage.module.css"
 import welcomeimg from "../Assets/welcome.png"
 import helloimg from "../Assets/hello.jpg"
+import { useCookies }from 'react-cookie';
 
 const HomepageContent = () => {
-
+  
   const [news, setNews] = useState([]);
 
 
@@ -12,7 +14,6 @@ const HomepageContent = () => {
     const fetchData = async () => {
       const result = await fetch('/all-newsletters');
       const jsonResult = await result.json();
-
       setNews(jsonResult);
     }
 
@@ -20,7 +21,18 @@ const HomepageContent = () => {
 
   }, []);
 
+  function parseJwt(token) {
+    if (!token) { return; }
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  }
 
+  const [cookies, setCookie] = useCookies();
+
+  const usernameDisplay = () => {
+    return parseJwt(cookies.accesstoken).username;
+  }
 
   return (
     <div>
@@ -29,7 +41,7 @@ const HomepageContent = () => {
 
         <div className={styles["welcomebox"]}>
           <a className={styles["welcomeboxtext"]}>
-            Hello, NAME!
+            Hello, {usernameDisplay(0)}!
           </a>
         </div>
 
@@ -99,6 +111,7 @@ const HomepageContent = () => {
 
     </div>
   )
+  
 }
 
-export default HomepageContent
+export default HomepageContent;
