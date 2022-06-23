@@ -5,7 +5,7 @@ import { useCookies }from 'react-cookie';
 
 const LoggedOut = () => {
 
-    const [cookies, setCookie, removeCookie] = useCookies();
+    const removeCookie = useCookies()[2];
     removeCookie("accesstoken");
 
   return (
@@ -21,7 +21,7 @@ const LoggedOut = () => {
             </div>
             <div className={styles["contentbox"]}>
                 <div className={styles["header"]}>
-                    <label>You have succefully logged out.</label>
+                    <label>You have successfully logged out.</label>
                     <label>Login <a href={'/'}>here</a>.</label>
                 </div>
             </div>

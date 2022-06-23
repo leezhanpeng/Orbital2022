@@ -33,7 +33,7 @@ app.post('/add-newsletter', (req, res) => {
     newsletter.save()
         .then(() => {
             console.log("newsletter uploaded");
-            res.redirect("/");
+            res.redirect("/home");
         })
         .catch((err) => {
             console.log(err);
