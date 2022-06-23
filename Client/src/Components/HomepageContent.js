@@ -1,10 +1,11 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+
 import styles from "../Styles/homepage.module.css"
 import welcomeimg from "../Assets/welcome.png"
 import helloimg from "../Assets/hello.jpg"
 
 const HomepageContent = () => {
-
+  
   const [news, setNews] = useState([]);
 
 
@@ -12,15 +13,12 @@ const HomepageContent = () => {
     const fetchData = async () => {
       const result = await fetch('/all-newsletters');
       const jsonResult = await result.json();
-
       setNews(jsonResult);
     }
 
     fetchData();
 
   }, []);
-
-
 
   return (
     <div>
@@ -99,6 +97,7 @@ const HomepageContent = () => {
 
     </div>
   )
+  
 }
 
-export default HomepageContent
+export default HomepageContent;

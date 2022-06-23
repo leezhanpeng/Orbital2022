@@ -19,6 +19,9 @@ const LoginPageContent = () => {
                 <div className={styles["header"]}>
                     Login
                 </div>
+                <div className={styles["wrongcred"]}>
+                    Wrong username or password. Please try again.
+                </div>
                 <form className={styles["form"]} action={'/user-login'} method={"POST"}>
                     <div className={styles["inputs"]}>
                         <div className={styles["input"]}>
