@@ -3,6 +3,7 @@ import profilelogo from "../Assets/profilelogo.png"
 import gamelogo from "../Assets/gamelogo.png"
 import friendlogo from "../Assets/friendlogo.png"
 import forumlogo from "../Assets/forumlogo.png"
+import exitlogo from "../Assets/exitlogo.png"
 import styles from "../Styles/navbar.module.css"
 const Navbar = () => {
   return (
@@ -20,6 +21,7 @@ const Navbar = () => {
                 <li><a href="/games"><img className={styles["navlogo"]} src={gamelogo} alt="gamelogo"></img></a></li>
                 <li><a><img className={styles["navlogo"]} src={friendlogo} alt="friendlogo"></img></a></li>
                 <li><a><img className={styles["navlogo"]} src={forumlogo} alt="forumlogo"></img></a></li>
+                <li><a href="/logout"><img className={styles["navlogo"]} src={exitlogo} alt="exitlogo"></img></a></li>
             </ul>
         </nav>
     </div>

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@100;200;300;400;500;600;700&family=Rubik&display=swap');
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(189, 189, 189);
+    height: 100vh;
+}
+
+.pagecontent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+}
+
+.titletext {
+    display: flex;
+    flex-direction: column;
+}
+.pagelogo {
+    width: 200px;
+    height: 150px;
+    background-color: rgb(189, 189, 189);
+    border-radius: 50px;
+
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.contentbox {
+    font-size: 25px;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 550px;
+    background-color: rgb(223, 223, 223);
+    border-radius: 15px;
+    margin-bottom: 10px;
+    flex-direction: column;
+}
+
+

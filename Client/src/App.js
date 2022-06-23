@@ -12,6 +12,7 @@ import Login from "./Pages/Loginpage.js";
 import LoginError from "./Pages/LoginWrongCred.js";
 import Signup from "./Pages/Signuppage.js";
 import CreateAccSuccess from "./Pages/CreateAccSuccess.js"
+import Logout from "./Pages/LoggedOut"
 
 import Tetris from "./Games/Tetris.js";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/loginerror" element={<LoginError />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signupsuccessful" element={<CreateAccSuccess />} />
+          <Route path="/logout" element={<Logout />} />
 
           <Route path="/home" element={<Homepage />} />
           <Route path="/profile" element={<Profile />} />

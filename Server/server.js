@@ -64,9 +64,8 @@ app.post('/user-login', async (req, res) => {
         if (correctpw)
         {
             const accessToken = createTokens(user);
-            res.cookie("access-token", accessToken, {
-                maxAge: 60 * 60 * 1000,
-                secure: true
+            res.cookie("accesstoken", accessToken, {
+                maxAge: 60 * 60 * 1000 
             });
 
             res.redirect("/home");
