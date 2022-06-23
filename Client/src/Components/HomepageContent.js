@@ -90,7 +90,7 @@ const HomepageContent = () => {
               </div>
 
               <div className={styles["profile"]}>
-                <label className={styles["ranknumber"]}>3</label>
+                <label className={styles["ranknumber"]}>5</label>
                 <div><img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img></div>
                 <label className={styles["username"]}>asdfgamer</label>
                 <label className={styles["recordtime"]}>01:21.98</label>
