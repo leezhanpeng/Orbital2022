@@ -23,6 +23,7 @@ import CreateAccSuccess from "./Pages/CreateAccSuccess.js"
 import Logout from "./Pages/LoggedOut"
 
 import Tetris from "./Games/Tetris.js";
+import Typing from "./Games/Typing.js";
 
 import PageNotFound from './Pages/PageNotFound.js';
 
@@ -49,7 +50,7 @@ function App() {
           <Route path="/newsletter/:title" element={<Newsletter />} />
 
           <Route path="/games/tetris" element={<Tetris />} />
-
+          <Route path="/games/typingspeeddemon" element={<Typing />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
     </div>

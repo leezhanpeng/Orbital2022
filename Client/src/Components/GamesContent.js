@@ -26,20 +26,20 @@ const GamesContent = () => {
             </div>
           </a>
 
-          <a href="#" className={styles["adivforgame"]}>
+          <a href="/games/typingspeeddemon" className={styles["adivforgame"]}>
             <div className={styles["game"]}>
-              <div><img src={snake} className={styles["gameimg"]}></img></div>
+              <div><img src={typing} className={styles["gameimg"]}></img></div>
               <div className={styles["gametitle"]}>
-                Snake Battle
+                Typing Speed Demon
               </div>
             </div>
           </a>
 
           <a href="#" className={styles["adivforgame"]}>
             <div className={styles["game"]}>
-              <div><img src={typing} className={styles["gameimg"]}></img></div>
+              <div><img src={snake} className={styles["gameimg"]}></img></div>
               <div className={styles["gametitle"]}>
-                Typing Speed Demon
+                Snake Battle
               </div>
             </div>
           </a>
