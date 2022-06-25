@@ -6,14 +6,14 @@ const NotLoggedIn = () => {
   return (
     <div className={styles["page"]}>
         <div className={styles["pagecontent"]}>
-            <div className={styles["title"]}>
+            <a href={"/"} className={styles["title"]}>
                 <img className={styles["pagelogo"]} src={logo} alt="logo"></img>
                 <div className={styles["titletext"]}>
                     <label>Orbital 22</label>
                     <label>A Software Development Project</label>
                     <label>By Team Kite Flyers</label>
                 </div>
-            </div>
+            </a>
             <div className={styles["contentbox"]}>
                 <div className={styles["header"]}>
                     <label>Warning! You are not logged in.</label>

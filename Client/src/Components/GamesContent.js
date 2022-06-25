@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from "../Styles/games.module.css"
 import tpiece from "../Assets/tpiece.jpg"
+import snake from "../Assets/snake.jpg"
+import typing from "../Assets/typing.jpg"
 import imgholder from "../Assets/bg.png"
 
 const GamesContent = () => {
@@ -26,9 +28,18 @@ const GamesContent = () => {
 
           <a href="#" className={styles["adivforgame"]}>
             <div className={styles["game"]}>
-              <div><img src={imgholder} className={styles["gameimg"]}></img></div>
+              <div><img src={snake} className={styles["gameimg"]}></img></div>
               <div className={styles["gametitle"]}>
-                TO BE CONFIRMED
+                Snake Battle
+              </div>
+            </div>
+          </a>
+
+          <a href="#" className={styles["adivforgame"]}>
+            <div className={styles["game"]}>
+              <div><img src={typing} className={styles["gameimg"]}></img></div>
+              <div className={styles["gametitle"]}>
+                Typing Speed Demon
               </div>
             </div>
           </a>
@@ -37,7 +48,7 @@ const GamesContent = () => {
             <div className={styles["game"]}>
               <div><img src={imgholder} className={styles["gameimg"]}></img></div>
               <div className={styles["gametitle"]}>
-                TO BE CONFIRMED
+                TO BE ANNOUNCED
               </div>
             </div>
           </a>

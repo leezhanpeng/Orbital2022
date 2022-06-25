@@ -7,14 +7,14 @@ const LoginPageContent = () => {
   return (
     <div className={styles["page"]}>
         <div className={styles["pagecontent"]}>
-            <div className={styles["title"]}>
+            <a href={"/"} className={styles["title"]}>
                 <img className={styles["pagelogo"]} src={logo} alt="logo"></img>
                 <div className={styles["titletext"]}>
                     <label>Orbital 22</label>
                     <label>A Software Development Project</label>
                     <label>By Team Kite Flyers</label>
                 </div>
-            </div>
+            </a>
             <div className={styles["loginbox"]}>
                 <div className={styles["header"]}>
                     Login
@@ -33,7 +33,7 @@ const LoginPageContent = () => {
                         Do not have an account? <a href="/signup">Sign up</a> now!
                     </div>
                     <div className={styles["bottomtext"]}>
-                        <a href="#">Forgot Password?</a>
+                        <a href={"#"}>Forgot Password?</a>
                     </div>
                 </form>
             </div>

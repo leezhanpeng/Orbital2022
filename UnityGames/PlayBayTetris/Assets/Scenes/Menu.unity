@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e057c6aebddfa4981a79ed71506bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  introText: {fileID: 1895322529}
 --- !u!1 &106048990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,7 +2180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Fastest 40L: 00:00.00'
+  m_Text: Fastest 40L - 01:58.33
 --- !u!222 &610101042
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3880,7 +3881,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: USERNAME
+  m_Text: SpindleTwing
 --- !u!222 &1318302026
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5641,7 +5642,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hello USERNAME
+  m_text: Hello SpindleTwing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58afb1e8090077e468cada47af1d5aa9, type: 2}
   m_sharedMaterial: {fileID: 3358653800626978233, guid: 58afb1e8090077e468cada47af1d5aa9, type: 2}

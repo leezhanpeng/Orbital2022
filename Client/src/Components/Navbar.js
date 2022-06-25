@@ -1,3 +1,5 @@
+import { useCookies } from 'react-cookie';
+
 import logo from "../Assets/logo.png"
 import profilelogo from "../Assets/profilelogo.png"
 import gamelogo from "../Assets/gamelogo.png"
@@ -5,7 +7,22 @@ import friendlogo from "../Assets/friendlogo.png"
 import forumlogo from "../Assets/forumlogo.png"
 import exitlogo from "../Assets/exitlogo.png"
 import styles from "../Styles/navbar.module.css"
+
 const Navbar = () => {
+
+  function parseJwt(token) {
+    if (!token) { return; }
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  }
+
+  const [cookies] = useCookies();
+
+  const username = () => {
+    return parseJwt(cookies.accesstoken).username;
+  }
+
   return (
     <div className={styles["navbar"]}>
         <a href="/home"><img className={styles["weblogo"]} src={logo} alt="logo"></img></a>
@@ -17,7 +34,7 @@ const Navbar = () => {
 
         <nav className={styles["nav-nav"]}>
             <ul className={styles["navicons"]}>
-                <li><a href="/profile"><img className={styles["navlogo"]} src={profilelogo} alt="profilelogo"></img></a></li>
+                <li><a href={"/profile/" + username()}><img className={styles["navlogo"]} src={profilelogo} alt="profilelogo"></img></a></li>
                 <li><a href="/games"><img className={styles["navlogo"]} src={gamelogo} alt="gamelogo"></img></a></li>
                 <li><a><img className={styles["navlogo"]} src={friendlogo} alt="friendlogo"></img></a></li>
                 <li><a><img className={styles["navlogo"]} src={forumlogo} alt="forumlogo"></img></a></li>
