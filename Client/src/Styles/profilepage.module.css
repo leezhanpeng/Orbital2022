@@ -1,0 +1,188 @@
+.pagecontent {
+    font: bolder;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(180, 180, 180);
+    align-items: center;
+}
+
+.topcontent {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+    margin-bottom: 20px;
+    width: 330px;
+    justify-content: space-between;
+
+}
+
+.btn::before {
+    border-radius: 3px;
+    box-shadow: #959595 0 2px 5px;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    padding: 2px 0 0;
+    position: absolute;
+    top: 0;
+    width: 100%; }
+    
+.btn:active::before { padding: 1px 0 0; }
+
+.btn {
+    background: #eee;
+    background: linear-gradient(#eee, #e2e2e2);
+    border: solid 1px #d0d0d0;
+    border-bottom: solid 3px #b2b1b1;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px #f5f5f5;
+    color: #555;
+    display: inline-block;
+    font: bold 12px Arial, Helvetica, Clean, sans-serif;
+    padding: 10px 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fafafa; }
+    
+.btn:hover {
+    background: #e4e4e4;
+    background: linear-gradient(#e4e4e4, #ededed);
+    border: solid 1px #c2c2c2;
+    border-bottom: solid 3px #b2b1b1;
+    box-shadow: inset 0 0 0 1px #efefef; }
+
+.profilebox {
+    width: 70%;
+    background-color: rgb(216, 216, 216);
+    margin-bottom: 50px;
+    border: 1px solid black;
+}
+
+.title {
+    font-size: 42px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.topbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.maininfo {
+    margin: 2%;
+    width: 60%;
+    display: flex;
+}
+
+.dp {
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    border-radius: 10%;
+    margin: 1%
+}
+
+.infotext {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+.username {
+    text-align: center;
+    font-size: 350%;
+    width: 100%;
+}
+
+.profiletitle {
+    font-size: 150%;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20%;
+}
+
+.biography {
+    font-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2%;
+    width: 20%;
+}
+
+.rankbox {
+    width: 35%;
+    background-color: rgb(216, 216, 216);
+    margin-bottom: 50px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 30px;
+}
+
+.ranklabel {
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 40px;
+}
+
+.rankpic {
+    width: 300px;
+    height: 300px;
+    margin: 30px;
+}
+
+.rankname {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.statisticsbox {
+    width: 35%;
+    background-color: rgb(216, 216, 216);
+    margin-bottom: 50px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 30px;
+}
+
+.statisticslabel {
+    font-weight: 500;
+    font-size: 40px;
+    margin: 5px;
+}
+
+.statsinfo {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+}
+
+.statstitle {
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+@media (max-width: 1390px) {
+    .infotext {
+        margin-left: 5%;
+    }
+}

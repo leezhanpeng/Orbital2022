@@ -43,16 +43,24 @@ app.post('/add-newsletter', (req, res) => {
 const User = require('./Schemas/user.js');
 
 app.post('/new-user', async (req, res) => {
-    const user = new User(req.body);
-    user.password = await bcrypt.hash(user.password, 10);
-    user.save()
-        .then(() => {
-            console.log("New account created.");
-            res.redirect("/signupsuccessful");
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+    const presentUser = await User.findOne({username: req.body.username});
+    if (!presentUser)
+    {
+        const user = new User(req.body);
+        user.password = await bcrypt.hash(user.password, 10);
+        user.save()
+            .then(() => {
+                console.log("New account created.");
+                res.redirect("/signupsuccessful");
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+    else
+    {
+        res.redirect("/signupdupuser");
+    }
 })
 
 app.post('/user-login', async (req, res) => {
@@ -86,6 +94,28 @@ app.post('/user-login', async (req, res) => {
 app.get("/authentication", validateToken, (req, res) => {
     res.json([{"allowaccess": true}]);
 });
+
+app.get('/all-profile', (req, res) => {
+    User.find()
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+})
+
+app.post('/change-dp', (req, res) => {
+    User.updateOne({username: req.body.username}, {$set: {dp: req.body.dp}}, (err, res) => {
+    });
+    res.redirect("/profile/" + req.body.username);
+})
+
+app.post('/change-bios', (req, res) => {
+    User.updateOne({username: req.body.username}, {$set: {bios: req.body.bios}}, (err, res) => {
+    });
+    res.redirect("/profile/" + req.body.username);
+})
 
 
 const PORT = 5000;

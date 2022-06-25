@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
 import AlreadyLoggedIn from '../Pages/AlreadyLoggedIn.js';
 import LoginpageContent from '../Components/LoginpageContent.js';

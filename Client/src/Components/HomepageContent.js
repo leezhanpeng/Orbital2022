@@ -6,7 +6,7 @@ import helloimg from "../Assets/hello.jpg"
 import { useCookies } from 'react-cookie';
 
 import profilepictest from "../Assets/testprofilepic.png"
-import profilepictest2 from "../Assets/testprofilepic2.png"
+import profilepictest2 from "../Assets/baseprofilepic.png"
 
 const HomepageContent = () => {
   
@@ -44,7 +44,7 @@ const HomepageContent = () => {
 
         <div className={styles["welcomebox"]}>
           <div className={styles["welcomeboxtext"]}>
-            Hello, {usernameDisplay(0)}!
+            Hello, {usernameDisplay()}!
           </div>
         </div>
 
@@ -63,35 +63,35 @@ const HomepageContent = () => {
 
               <div className={styles["profile"]}>
                 <label className={styles["ranknumber"]}>1</label>
-                <div><img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img></div>
+                <img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img>
                 <label className={styles["username"]}>fazerunner1</label>
                 <label className={styles["recordtime"]}>01:14.85</label>
               </div>
 
               <div className={styles["profile"]}>
                 <label className={styles["ranknumber"]}>2</label>
-                <div><img src={profilepictest} className={styles["profilepic"]} alt={"profileimg"}></img></div>
+                <img src={profilepictest} className={styles["profilepic"]} alt={"profileimg"}></img>
                 <label className={styles["username"]}>jenniferchue</label>
                 <label className={styles["recordtime"]}>01:15.25</label>
               </div>
 
               <div className={styles["profile"]}>
                 <label className={styles["ranknumber"]}>3</label>
-                <div><img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img></div>
+                <img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img>
                 <label className={styles["username"]}>bigtower</label>
                 <label className={styles["recordtime"]}>01:19.44</label>
               </div>
 
               <div className={styles["profile"]}>
                 <label className={styles["ranknumber"]}>4</label>
-                <div><img src={profilepictest} className={styles["profilepic"]} alt={"profileimg"}></img></div>
+                <img src={profilepictest} className={styles["profilepic"]} alt={"profileimg"}></img>
                 <label className={styles["username"]}>MaxxxBurner</label>
                 <label className={styles["recordtime"]}>01:21.70</label>
               </div>
 
               <div className={styles["profile"]}>
                 <label className={styles["ranknumber"]}>5</label>
-                <div><img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img></div>
+                <img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img>
                 <label className={styles["username"]}>asdfgamer</label>
                 <label className={styles["recordtime"]}>01:21.98</label>
               </div>
@@ -105,14 +105,14 @@ const HomepageContent = () => {
 
         <div className={styles["newsbox"]}>
           <div className={styles["newsheader"]}>
-            NEWSLETTER
+            Newsletter
           </div>
 
 
 
           {
           newsletter.map((news, index) => (
-          <a href='/home' key={index} className={styles["news"]}>
+          <a href={'/newsletter/' + news.title} key={index} className={styles["news"]}>
 
             <div><img src={news.imagebase64} className={styles["newsimg"]} alt={"newletterimg"}></img></div>
 

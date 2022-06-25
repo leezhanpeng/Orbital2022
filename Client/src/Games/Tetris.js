@@ -23,10 +23,10 @@ function Tetris() {
   }, []);
 
   const { unityProvider } = useUnityContext({
-    loaderUrl: "../Build/WebGLBuildTetris.loader.js",
-    dataUrl: "../Build/WebGLBuildTetris.data",
-    frameworkUrl: "../Build/WebGLBuildTetris.framework.js",
-    codeUrl: "../Build/WebGLBuildTetris.wasm",
+    loaderUrl: "../TetrisBuild/WebGLBuildTetris.loader.js",
+    dataUrl: "../TetrisBuild/WebGLBuildTetris.data",
+    frameworkUrl: "../TetrisBuild/WebGLBuildTetris.framework.js",
+    codeUrl: "../TetrisBuild/WebGLBuildTetris.wasm",
   });
 
   if (auth[0].allowaccess)
