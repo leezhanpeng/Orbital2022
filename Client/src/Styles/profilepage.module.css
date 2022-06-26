@@ -25,13 +25,11 @@
 
 .btn::before {
     border-radius: 3px;
-    box-shadow: #959595 0 2px 5px;
     content: "";
     display: block;
     height: 100%;
     left: 0;
     padding: 2px 0 0;
-    position: absolute;
     top: 0;
     width: 100%; }
     
@@ -48,7 +46,6 @@
     display: inline-block;
     font: bold 12px Arial, Helvetica, Clean, sans-serif;
     padding: 10px 20px;
-    position: relative;
     text-align: center;
     text-decoration: none;
     text-shadow: 0 1px 0 #fafafa; }

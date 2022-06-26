@@ -73,7 +73,7 @@ const ProfilepageContent = () => {
                 <label className={styles["title"]}>Player Info</label>
                 {
                     personalProfileCheck.map((checker, index) => (
-                        <div className={styles["buttons"]}>
+                        <div key={index} className={styles["buttons"]}>
                         <a href="/changedisplaypic"><button className={styles["btn"]}>Change Display Pic</button></a>
                         <a href="/changebiography"><button className={styles["btn"]}>Change Biography</button></a>
                         </div>
