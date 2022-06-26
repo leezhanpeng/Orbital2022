@@ -14,7 +14,7 @@ public class PlayerNetwork : MonoBehaviour
         string username = introText.text.Split(" ")[1];
         Instance = this;
 
-        PlayerName = username;
+        PlayerName = Random.Range(1000,9999).ToString();
     }
 
 }
