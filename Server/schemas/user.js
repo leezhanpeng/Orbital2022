@@ -22,6 +22,9 @@ const userSchema = new Schema({
     },
     bios: {
         type: String
+    },
+    friends: {
+        type: Array
     }
     
 }, {timestamps: true})

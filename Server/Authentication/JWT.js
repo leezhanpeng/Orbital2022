@@ -1,7 +1,8 @@
 const { sign, verify } = require('jsonwebtoken');
+require('dotenv').config();
 
 const createTokens = (user) => {
-    const accessToken = sign({ username: user.username, id: user.id }, "TESTKEY");
+    const accessToken = sign({ username: user.username, id: user.id }, process.env.TOKEN_KEY);
 
     return accessToken
 };

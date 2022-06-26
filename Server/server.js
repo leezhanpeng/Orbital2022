@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const { createTokens, validateToken } = require('./Authentication/JWT.js');
+require('dotenv').config();
 
-const dbURI = 'mongodb+srv://playbay:orbital1232@playbaybackend.l2ib1.mongodb.net/PlayBay?retryWrites=true&w=majority';
+const dbURI = process.env.DATABASE_URI;
 
 mongoose.connect(dbURI)
     .then((result) => console.log('Connected to MongoDB'))
