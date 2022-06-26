@@ -14,7 +14,7 @@ public class LobbyHandler : MonoBehaviourPunCallbacks
     public GameObject inRoom;
     public Text roomName;
     public RoomItem roomItem;
-    List<RoomItem> roomItemList = new List<RoomItem>();
+    public List<RoomItem> roomItemList = new List<RoomItem>();
     public Transform content;
     public List<PlayerItem> playerItemList = new List<PlayerItem>();
     public PlayerItem playerItem;
@@ -55,26 +55,44 @@ public class LobbyHandler : MonoBehaviourPunCallbacks
         UpdateRoomList(roomList);
         base.OnRoomListUpdate(roomList);
     }
-    
+
     void UpdateRoomList(List<RoomInfo> list)
     {
-        foreach (RoomItem item in roomItemList)
+        if (list.Count == 0)
         {
-            Destroy(item.gameObject);
-        }    
-        roomItemList.Clear();
-
-        foreach (RoomInfo room in list)
+            return;
+        }
+        else if (list.Count == 1 && list[0].MaxPlayers > 0) //if a new room is created
         {
-            if (room.PlayerCount == 0)
-            {
-                continue;
-            }
             RoomItem newRoom = Instantiate(roomItem, content);
-            newRoom.SetRoomName(room.Name);
+            newRoom.SetRoomName(list[0].Name);
             roomItemList.Add(newRoom);
         }
+        else
+        {
+            foreach (RoomItem item in roomItemList)
+            {
+                Destroy(item.gameObject);
+            }
+            roomItemList.Clear();
+
+            foreach (RoomInfo room in list)
+            {
+                if (room.MaxPlayers <= 0)
+                {
+                    continue;
+                }
+                RoomItem newRoom = Instantiate(roomItem, content);
+                newRoom.SetRoomName(room.Name);
+                roomItemList.Add(newRoom);
+            }
+        }
     }
+    // when first join : all rooms
+    // when leave room : all rooms + last room is maxplayer <= 0
+    // when new room created, just one room
+
+
 
     public void JoinRoom(string roomName)
     {
