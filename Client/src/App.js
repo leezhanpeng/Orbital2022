@@ -51,6 +51,7 @@ function App() {
 
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/typingspeeddemon" element={<Typing />} />
+
           <Route path="*" element={<PageNotFound />} />
         </Routes>
     </div>
