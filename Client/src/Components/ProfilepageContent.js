@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
-import PageNotFound from '../Pages/PageNotFound.js';
+import NILProfile from '../Pages/NILProfile.js';
 import styles from '../Styles/profilepage.module.css'
 
 import baseProfilePic from "../Assets/baseprofilepic.png"
@@ -63,7 +63,7 @@ const ProfilepageContent = () => {
     {
       return (
         <div>
-          <PageNotFound />
+          <NILProfile />
         </div>
       )
     }

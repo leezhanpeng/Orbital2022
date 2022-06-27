@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PageNotFound from '../Pages/PageNotFound.js';
-import styles from "../Styles/newsletter.module.css"
+import styles from "../Styles/newsletter.module.css";
+import NILNewsletter from '../Pages/NILNewsletter.js';
 
 const NewsletterContent = () => {
 
@@ -30,7 +30,7 @@ const NewsletterContent = () => {
     {
       return (
         <div>
-          <PageNotFound />
+          <NILNewsletter />
         </div>
       )
     }

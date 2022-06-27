@@ -17,7 +17,7 @@ const validateToken = (req, res, next) => {
 
     try 
     {
-        const validToken = verify(accessToken, "TESTKEY");
+        const validToken = verify(accessToken, process.env.TOKEN_KEY);
         if (validToken)
         {
             return next();
