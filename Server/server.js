@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true, limit: '500mb' }));
 app.use(express.json({limit: '500mb'}));
 app.use(cookieParser());
 
-const Newsletter = require('./Schemas/newsletter.js');
+const Newsletter = require('./schemas/newsletter.js');
 
 app.get('/all-newsletters', (req, res) => {
     Newsletter.find().sort({ createdAt: -1 })
@@ -41,7 +41,7 @@ app.post('/add-newsletter', (req, res) => {
         })
 })
 
-const User = require('./Schemas/user.js');
+const User = require('./schemas/user.js');
 
 app.post('/new-user', async (req, res) => {
     const presentUser = await User.findOne({username: req.body.username});
