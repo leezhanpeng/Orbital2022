@@ -36,8 +36,8 @@ const Navbar = () => {
             <ul className={styles["navicons"]}>
                 <li><a href={"/profile/" + username()}><img className={styles["navlogo"]} src={profilelogo} alt="profilelogo"></img></a></li>
                 <li><a href="/games"><img className={styles["navlogo"]} src={gamelogo} alt="gamelogo"></img></a></li>
-                <li><a><img className={styles["navlogo"]} src={friendlogo} alt="friendlogo"></img></a></li>
-                <li><a><img className={styles["navlogo"]} src={forumlogo} alt="forumlogo"></img></a></li>
+                <li><a href="/friendslist"><img className={styles["navlogo"]} src={friendlogo} alt="friendlogo"></img></a></li>
+                <li><a href="/forums"><img className={styles["navlogo"]} src={forumlogo} alt="forumlogo"></img></a></li>
                 <li><a href="/logout"><img className={styles["navlogo"]} src={exitlogo} alt="exitlogo"></img></a></li>
             </ul>
         </nav>

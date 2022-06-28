@@ -7,6 +7,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     background-color: rgb(180, 180, 180);
+    height: 90vh;
 }
 
 .gamesbigtitle {
