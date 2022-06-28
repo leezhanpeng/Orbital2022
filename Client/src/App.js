@@ -27,6 +27,8 @@ import Typing from "./Games/Typing.js";
 
 import PageNotFound from './Pages/PageNotFound.js';
 
+import Development from './Pages/UnderProduction.js'
+
 function App() {
   return (
     <div>
@@ -51,6 +53,9 @@ function App() {
 
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/typingspeeddemon" element={<Typing />} />
+
+          <Route path="/friendslist" element={<Development />} />
+          <Route path="/forums" element={<Development />} />
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>

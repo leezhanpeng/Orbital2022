@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true, limit: '500mb' }));
 app.use(express.json({limit: '500mb'}));
 app.use(cookieParser());
 
-const Newsletter = require('./Schemas/newsletter.js');
+const Newsletter = require('./schemas/newsletter.js');
 
 app.get('/all-newsletters', (req, res) => {
     Newsletter.find().sort({ createdAt: -1 })
@@ -41,7 +41,7 @@ app.post('/add-newsletter', (req, res) => {
         })
 })
 
-const User = require('./Schemas/user.js');
+const User = require('./schemas/user.js');
 
 app.post('/new-user', async (req, res) => {
     const presentUser = await User.findOne({username: req.body.username});
@@ -119,6 +119,6 @@ app.post('/change-bios', (req, res) => {
 })
 
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`server start liao, port ${PORT}`));
