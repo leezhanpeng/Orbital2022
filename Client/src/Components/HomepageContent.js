@@ -130,40 +130,6 @@ const HomepageContent = () => {
           </a>
           ))
           }
-
-
-
-          <a href='/home' key={"fakeid1"} className={styles["news"]}>
-            <div><img src={helloimg} className={styles["newsimg"]} alt={"newletterimg"}></img></div>
-
-            <div className={styles["newstext"]}>
-
-              <div className={styles["newstitle"]}>
-                Say hi to the developers!
-              </div>
-              <div className={styles["newscontent"]}>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-              </div>
-
-            </div>
-          </a>
-
-
-
-          <a href='/home' key={"fakeid2"} className={styles["news"]}>
-            <div><img src={welcomeimg} className={styles["newsimg"]} alt={"newletterimg"}></img></div>
-
-            <div className={styles["newstext"]}>
-
-              <div className={styles["newstitle"]}>
-                Welcome to PlayFab!
-              </div>
-              <div className={styles["newscontent"]}>
-              Hello players! The website is currently in progress. Hope you are as excited as we are in the completion of this project!
-              </div>
-
-            </div>
-          </a>
         </div>
 
         </div>
