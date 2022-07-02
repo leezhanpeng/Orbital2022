@@ -120,7 +120,7 @@ const HomepageContent = () => {
             newsletter.map((news, index) => (
             <a href={'/newsletter/' + news.title} key={index} className={styles["news"]}>
 
-              <div><img src={news.imagebase64 } className={styles["newsimg"]} alt={"newletterimg"}></img></div>
+              <div><img src={news.imagebase64} className={styles["newsimg"]} alt={"newletterimg"}></img></div>
 
               <div className={styles["newstext"]}>
 
