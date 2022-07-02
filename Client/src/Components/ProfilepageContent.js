@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
 import NILProfile from '../Pages/NILProfile.js';
+import Loading from '../Pages/LoadingPage.js';
 import styles from '../Styles/profilepage.module.css'
 
 import baseProfilePic from "../Assets/baseprofilepic.png"
@@ -24,8 +25,7 @@ const ProfilepageContent = () => {
         return parseJwt(cookies.accesstoken).username;
       }
 
-    const [displayedProfile, setDisplayedProfile] = useState([]);
-    const [profilePresent, setProfilePresent] = useState(false);
+    const [displayedProfile, setDisplayedProfile] = useState(["loading"]);
     const [personalProfile, setPersonalProfile] = useState(false);
 
 
@@ -37,14 +37,33 @@ const ProfilepageContent = () => {
         setDisplayedProfile(profile);
         if (profile.length > 0)
         {
-            setProfilePresent(true);
-            if (profile[0].dp === "")
-            {
-                profile[0].dp = baseProfilePic;
-            }
             if (profile[0].username === accountUsername())
             {
                 setPersonalProfile(true);
+            }
+        }
+    }
+
+        fetchData();
+
+    });
+
+    const [DP, setDP] = useState('');
+
+    useEffect(() => {
+        const fetchData = async () => {
+        const result = await fetch('/all-dp');
+        const jsonResult = await result.json();
+        const profiledp = jsonResult.filter(x => x.username === username)
+        if (profiledp.length !== 0)
+        {
+            if (profiledp[0].dp === "")
+            {
+                setDP(baseProfilePic);
+            }
+            else
+            {
+                setDP(profiledp[0].dp);
             }
         }
     }
@@ -59,13 +78,21 @@ const ProfilepageContent = () => {
         personalProfileCheck.push(true);
     }
     
-    if (!profilePresent)
+    if (displayedProfile.length === 0)
     {
       return (
         <div>
           <NILProfile />
         </div>
       )
+    }
+    else if (displayedProfile[0] === "loading")
+    {
+        return (
+            <div>
+            <Loading />
+          </div>
+        )
     }
     return (
         <div className={styles["pagecontent"]}>
@@ -85,7 +112,7 @@ const ProfilepageContent = () => {
                         displayedProfile.map((profile, index) => (
                         <div key={index} className={styles["topbox"]}>
                             <div className={styles["maininfo"]}>
-                                <img src={profile.dp} className={styles["dp"]} alt={"dp"}></img>
+                                <img src={DP} className={styles["dp"]} alt={"dp"}></img>
                                 <div className={styles["infotext"]}>
                                     <label className={styles["username"]}>{profile.username}</label>
                                     <label className={styles["profiletitle"]}>{profile.title}</label>

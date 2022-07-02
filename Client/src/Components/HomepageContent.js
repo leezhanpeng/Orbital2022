@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 import styles from "../Styles/homepage.module.css"
-import welcomeimg from "../Assets/welcome.png"
-import helloimg from "../Assets/hello.jpg"
 import { useCookies } from 'react-cookie';
 
 import profilepictest from "../Assets/testprofilepic.png"
@@ -11,6 +9,7 @@ import profilepictest2 from "../Assets/baseprofilepic.png"
 const HomepageContent = () => {
   
   const [newsletter, setNews] = useState([]);
+  const [loadingnews, setLoadingNews] = useState([true]);
 
 
   useEffect(() => {
@@ -18,6 +17,7 @@ const HomepageContent = () => {
       const result = await fetch('/all-newsletters');
       const jsonResult = await result.json();
       setNews(jsonResult);
+      setLoadingNews([]);
     }
 
     fetchData();
@@ -107,63 +107,35 @@ const HomepageContent = () => {
           <div className={styles["newsheader"]}>
             Newsletter
           </div>
-
-
-
           {
-          newsletter.map((news, index) => (
-          <a href={'/newsletter/' + news.title} key={index} className={styles["news"]}>
-
-            <div><img src={news.imagebase64} className={styles["newsimg"]} alt={"newletterimg"}></img></div>
-
-            <div className={styles["newstext"]}>
-
-              <div className={styles["newstitle"]}>
-                {news.title}
+            loadingnews.map((load, index) => (
+              <div key={index} className={styles["loading"]}>
+                Loading...
               </div>
-              <div className={styles["newscontent"]}>
-                {news.content}
-              </div>
-
-            </div>
-
-          </a>
-          ))
+            ))
           }
 
 
+          {
+            newsletter.map((news, index) => (
+            <a href={'/newsletter/' + news.title} key={index} className={styles["news"]}>
 
-          <a href='/home' key={"fakeid1"} className={styles["news"]}>
-            <div><img src={helloimg} className={styles["newsimg"]} alt={"newletterimg"}></img></div>
+              <div><img src={news.imagebase64 } className={styles["newsimg"]} alt={"newletterimg"}></img></div>
 
-            <div className={styles["newstext"]}>
+              <div className={styles["newstext"]}>
 
-              <div className={styles["newstitle"]}>
-                Say hi to the developers!
-              </div>
-              <div className={styles["newscontent"]}>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-              </div>
+                <div className={styles["newstitle"]}>
+                  {news.title}
+                </div>
+                <div className={styles["newscontent"]}>
+                  {news.content}
+                </div>
 
-            </div>
-          </a>
-
-
-
-          <a href='/home' key={"fakeid2"} className={styles["news"]}>
-            <div><img src={welcomeimg} className={styles["newsimg"]} alt={"newletterimg"}></img></div>
-
-            <div className={styles["newstext"]}>
-
-              <div className={styles["newstitle"]}>
-                Welcome to PlayFab!
-              </div>
-              <div className={styles["newscontent"]}>
-              Hello players! The website is currently in progress. Hope you are as excited as we are in the completion of this project!
               </div>
 
-            </div>
-          </a>
+            </a>
+            ))
+          }
         </div>
 
         </div>

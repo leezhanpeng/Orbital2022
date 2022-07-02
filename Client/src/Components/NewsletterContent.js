@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styles from "../Styles/newsletter.module.css";
 import NILNewsletter from '../Pages/NILNewsletter.js';
+import Loading from '../Pages/LoadingPage.js';
 
 const NewsletterContent = () => {
 
-    const [newsletter, setNews] = useState([]);
+    const [newsletter, setNews] = useState(["loading"]);
     const hrefid = window.location.href.split("/").pop();
     let newsid = hrefid.replace(/%20/gi, " ");
-
-    const [newsPresent, setNewsPresent] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,21 +15,25 @@ const NewsletterContent = () => {
       const jsonResult = await result.json();
       const displayedNews = jsonResult.filter(x => x.title === newsid)
       setNews(displayedNews);
-      if (displayedNews.length > 0)
-      {
-        setNewsPresent(true);
-      }
     }
 
     fetchData();
 
   });
 
-    if (!newsPresent)
+    if (newsletter.length === 0)
     {
       return (
         <div>
           <NILNewsletter />
+        </div>
+      )
+    }
+    else if (newsletter[0] === "loading")
+    {
+      return (
+        <div>
+          <Loading />
         </div>
       )
     }

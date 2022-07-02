@@ -23,7 +23,7 @@ const ChangeBioContent = () => {
                     <form className={styles["form"]} action={'/change-bios'} method={"POST"}>
                         <div className={styles["input"]}>
                             <label className={styles["titles"]}>Edit biography:</label>
-                            <textarea id="bios" name="bios" className={styles["bios"]} type={"text"} required></textarea>                  
+                            <textarea id="bios" name="bios" className={styles["bios"]} type={"text"} maxlength = "100" required></textarea>                  
                         </div>
                         <div className={styles["invisinput"]}>
                             <input id="username" name="username" type={"text"} readOnly value={username()}></input>
