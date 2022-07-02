@@ -12,7 +12,7 @@ const validateToken = (req, res, next) => {
 
     if (!accessToken)
     {
-        return ;
+        return res.json([{"allowaccess": false}]);
     }
 
     try 
