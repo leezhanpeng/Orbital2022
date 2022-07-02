@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 
 import Navbar from '../Components/Navbar.js';
 import Footer from '../Components/Footer.js';
-import NotLoggedIn from '../Pages/NotLoggedIn.js'
+import NotLoggedIn from '../Pages/NotLoggedIn.js';
+import CheckAuth from '../Pages/CheckAuth.js';
 
 import { Unity, useUnityContext } from "react-unity-webgl";
 import styles from "../Styles/gamepages/typing.module.css";
 
 function Typing() {
 
-  const [auth, setAuth] = useState([{"allowaccess": false}]);
+  const [auth, setAuth] = useState([{"allowaccess": "checking"}]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +30,15 @@ function Typing() {
     codeUrl: "../TypingBuild/WebGLBuildTypingSpeedDemon.wasm",
   });
 
-  if (auth[0].allowaccess)
+  if (auth[0].allowaccess === "checking")
+  {
+    return (
+      <div>
+        <CheckAuth />
+      </div>
+    )
+  }
+  else if (auth[0].allowaccess)
   {
 
     return (
