@@ -14,9 +14,6 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    dp: {
-        type: String,
-    },
     title: {
         type: String
     },

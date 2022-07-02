@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap');
+
+.pagecontent {
+    display: flex;
+    align-items: center;
+    padding: 30px 200px 30px 200px;
+    flex-direction: column;
+    background-color: rgb(180, 180, 180);
+    height: 90vh;
+}
+
+.titles {
+    display: flex;
+    justify-content: space-between;
+    width: 620px;
+    margin: 100px 0px 50px 0px;
+}
+
+.listtitle {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+    text-decoration: none;
+    color: rgb(114, 114, 114);
+}
+.addtitle {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+    text-decoration: none;
+    color: inherit;
+    
+}
+.addfriendbox {
+    background-color: rgb(255, 249, 240);
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+    height: 50%;
+    width: 800px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputbox {
+    background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 0 0 50px 0;
+	width: 100%;
+    border-radius: 10px;
+    height: 30px;
+}
+
+.btn::before {
+    border-radius: 3px;
+    box-shadow: #959595 0 2px 5px;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    padding: 2px 0 0;
+    position: absolute;
+    top: 0;
+    width: 100%; }
+    
+.btn:active::before { padding: 1px 0 0; }
+
+.btn {
+    background: #eee;
+    background: linear-gradient(#eee, #e2e2e2);
+    border: solid 1px #d0d0d0;
+    border-bottom: solid 3px #b2b1b1;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px #f5f5f5;
+    color: #555;
+    display: inline-block;
+    font: bold 12px Arial, Helvetica, Clean, sans-serif;
+    padding: 10px 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fafafa; }
+    
+.btn:hover {
+    background: #e4e4e4;
+    background: linear-gradient(#e4e4e4, #ededed);
+    border: solid 1px #c2c2c2;
+    border-bottom: solid 3px #b2b1b1;
+    box-shadow: inset 0 0 0 1px #efefef; }
+    
+.btn:active {
+    background: #dfdfdf;
+    background: linear-gradient(#dfdfdf, #e3e3e3);
+    border: solid 1px #959595;
+    box-shadow: inset 0 10px 15px 0 #c4c4c4;
+    top:2px;}
+
+.notetext {
+    font-family: 'Roboto Mono', monospace;
+    margin: 80px 0 30px 0;
+    display: flex;
+    
+    flex-direction: column;
+}
+
+.text {
+    text-align: center;
+}
+
+.invisinput {
+    display: none;
+}
+
+.success {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(195, 255, 190);
+    font-size: 15px;
+    color: green;
+    border: 2px solid green;
+    border-radius: 5px;
+    width: 390px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.alreadysent {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(189, 189, 189);
+    font-size: 15px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 390px;
+    height: 50px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.usernotexist {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(255, 190, 190);
+    font-size: 15px;
+    color: red;
+    border: 2px solid red;
+    border-radius: 5px;
+    width: 390px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.alreadyfriends {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(195, 255, 190);
+    font-size: 15px;
+    color: green;
+    border: 2px solid green;
+    border-radius: 5px;
+    width: 390px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.addself {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(255, 183, 183);
+    font-size: 15px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 390px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}

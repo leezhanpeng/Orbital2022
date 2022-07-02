@@ -25,6 +25,14 @@ import Logout from "./Pages/LoggedOut"
 import Tetris from "./Games/Tetris.js";
 import Typing from "./Games/Typing.js";
 
+import Friendslist from "./Pages/Friends.js";
+import AddFriend from './Pages/AddFriend.js';
+import AddedFriend from './Pages/SentFriendReq.js';
+import AlreadyAddedFriend from './Pages/AlreadyAddedFriend.js';
+import AddFriendError from './Pages/FriendNotReg.js';
+import AlreadyFriends from './Pages/AlreadyFriends.js';
+import AddSelf from './Pages/AddSelf.js';
+
 import PageNotFound from './Pages/PageNotFound.js';
 
 import Development from './Pages/UnderProduction.js'
@@ -33,6 +41,7 @@ function App() {
   return (
     <div>
         <Routes>
+
           <Route path="/" element={<Login />} />
           <Route path="/loginerror" element={<LoginError />} />
           <Route path="/signup" element={<Signup />} />
@@ -54,7 +63,16 @@ function App() {
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/typingspeeddemon" element={<Typing />} />
 
-          <Route path="/friendslist" element={<Development />} />
+          <Route path="/friendslist" element={<Friendslist />} />
+          <Route path="/addfriend" element={<AddFriend />} />
+          <Route path="/addedfriend" element={<AddedFriend />} />
+          <Route path="/alreadyaddedfriend" element={<AlreadyAddedFriend />} />
+          <Route path="/addfrienderror" element={<AddFriendError />} />
+          <Route path="/alreadyfriends" element={<AlreadyFriends />} />
+          <Route path="/addedself" element={<AddSelf />} />
+
+
+          
           <Route path="/forums" element={<Development />} />
 
           <Route path="*" element={<PageNotFound />} />

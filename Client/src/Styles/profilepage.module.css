@@ -48,7 +48,7 @@
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0 1px 0 #fafafa; }
+    text-shadow: 0 1px 0 #fafafa;}
     
 .btn:hover {
     background: #e4e4e4;
@@ -116,6 +116,10 @@
     align-items: center;
     margin-right: 2%;
     width: 20%;
+}
+
+.profilebios {
+    overflow-wrap: anywhere;
 }
 
 .rankbox {

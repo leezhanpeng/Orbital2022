@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 import styles from "../Styles/homepage.module.css"
-import welcomeimg from "../Assets/welcome.png"
-import helloimg from "../Assets/hello.jpg"
 import { useCookies } from 'react-cookie';
 
 import profilepictest from "../Assets/testprofilepic.png"
@@ -11,6 +9,7 @@ import profilepictest2 from "../Assets/baseprofilepic.png"
 const HomepageContent = () => {
   
   const [newsletter, setNews] = useState([]);
+  const [loadingnews, setLoadingNews] = useState([true]);
 
 
   useEffect(() => {
@@ -18,6 +17,7 @@ const HomepageContent = () => {
       const result = await fetch('/all-newsletters');
       const jsonResult = await result.json();
       setNews(jsonResult);
+      setLoadingNews([]);
     }
 
     fetchData();
@@ -107,28 +107,34 @@ const HomepageContent = () => {
           <div className={styles["newsheader"]}>
             Newsletter
           </div>
-
+          {
+            loadingnews.map((load, index) => (
+              <div key={index} className={styles["loading"]}>
+                Loading...
+              </div>
+            ))
+          }
 
 
           {
-          newsletter.map((news, index) => (
-          <a href={'/newsletter/' + news.title} key={index} className={styles["news"]}>
+            newsletter.map((news, index) => (
+            <a href={'/newsletter/' + news.title} key={index} className={styles["news"]}>
 
-            <div><img src={news.imagebase64} className={styles["newsimg"]} alt={"newletterimg"}></img></div>
+              <div><img src={news.imagebase64 } className={styles["newsimg"]} alt={"newletterimg"}></img></div>
 
-            <div className={styles["newstext"]}>
+              <div className={styles["newstext"]}>
 
-              <div className={styles["newstitle"]}>
-                {news.title}
+                <div className={styles["newstitle"]}>
+                  {news.title}
+                </div>
+                <div className={styles["newscontent"]}>
+                  {news.content}
+                </div>
+
               </div>
-              <div className={styles["newscontent"]}>
-                {news.content}
-              </div>
 
-            </div>
-
-          </a>
-          ))
+            </a>
+            ))
           }
         </div>
 
