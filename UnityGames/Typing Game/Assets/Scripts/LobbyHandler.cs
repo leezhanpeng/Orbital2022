@@ -14,12 +14,13 @@ public class LobbyHandler : MonoBehaviourPunCallbacks
     public GameObject inRoom;
     public Text roomName;
     public RoomItem roomItem;
-    public List<RoomItem> roomItemList = new List<RoomItem>();
+    public Dictionary<string,RoomInfo> roomItemList = new Dictionary<string,RoomInfo>();
     public Transform content;
     public List<PlayerItem> playerItemList = new List<PlayerItem>();
     public PlayerItem playerItem;
     public Transform playerListContent;
     public GameObject playButton;
+    public GameObject scoreSetter;
 
 
     private void Start()
@@ -32,6 +33,7 @@ public class LobbyHandler : MonoBehaviourPunCallbacks
     public void Update()
     {
         playButton.SetActive(PhotonNetwork.IsMasterClient);
+        scoreSetter.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     public void OnClickCreate()
@@ -58,34 +60,82 @@ public class LobbyHandler : MonoBehaviourPunCallbacks
 
     void UpdateRoomList(List<RoomInfo> list)
     {
-        if (list.Count == 0)
-        {
-            return;
-        }
-        else if (list.Count == 1 && list[0].MaxPlayers > 0) //if a new room is created
-        {
-            RoomItem newRoom = Instantiate(roomItem, content);
-            newRoom.SetRoomName(list[0].Name);
-            roomItemList.Add(newRoom);
-        }
-        else
-        {
-            foreach (RoomItem item in roomItemList)
-            {
-                Destroy(item.gameObject);
-            }
-            roomItemList.Clear();
+        // ver1 : buggy mess
+        //if (list.Count == 0)
+        //{
+        //    return;
+        //}
+        //else if (list.Count == 1 && list[0].MaxPlayers > 0) //if a new room is created
+        //{
+        //    Debug.Log(list[0].Name);
+        //    RoomItem newRoom = Instantiate(roomItem, content);
+        //    newRoom.SetRoomName(list[0].Name);
+        //    roomItemList.Add(newRoom);
+        //}
+        //else
+        //{
+        //    foreach (RoomItem item in roomItemList)
+        //    {
+        //        Destroy(item.gameObject);
+        //    }
+        //    roomItemList.Clear();
 
-            foreach (RoomInfo room in list)
+        //    foreach (RoomInfo room in list)
+        //    {
+        //        if (room.MaxPlayers <= 0)
+        //        {
+        //            Debug.Log(room.Name);
+        //            continue;
+        //        }
+        //        Debug.Log(room.Name);
+        //        RoomItem newRoom = Instantiate(roomItem, content);
+        //        newRoom.SetRoomName(room.Name);
+        //        roomItemList.Add(newRoom);
+        //    }
+        //}
+
+        //ver2: buggy when leave
+        //foreach(RoomInfo info in list)
+        //{
+        //    if (info.RemovedFromList)
+        //    {
+        //        int index = roomItemList.FindIndex(x => x.roomName.text == info.Name);
+        //        if (index != -1)
+        //        {
+        //            Destroy(roomItemList[index].gameObject);
+        //            roomItemList.Remove(info.Name);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        RoomItem newRoomItem = Instantiate(roomItem, content);
+        //        newRoomItem.SetRoomName(info.Name);
+        //        roomItemList.Add(newRoomItem);
+        //    }
+        //}
+
+        //ver3
+        foreach (Transform room in content)
+        {
+            Destroy(room.gameObject);
+        }    
+        foreach(RoomInfo info in list)
+        {
+            
+            if(info.RemovedFromList || !info.IsVisible || !info.IsOpen)
             {
-                if (room.MaxPlayers <= 0)
-                {
-                    continue;
-                }
-                RoomItem newRoom = Instantiate(roomItem, content);
-                newRoom.SetRoomName(room.Name);
-                roomItemList.Add(newRoom);
+                roomItemList.Remove(info.Name);
             }
+            else
+            {
+                roomItemList[info.Name] = info;
+            }
+        }
+        foreach(KeyValuePair<string,RoomInfo> item in roomItemList)
+        {
+            RoomItem newRoomItem = Instantiate(roomItem, content);
+            newRoomItem.SetRoomName(item.Key);
+
         }
     }
     // when first join : all rooms
@@ -114,6 +164,7 @@ public class LobbyHandler : MonoBehaviourPunCallbacks
             }
         }*/
         PhotonNetwork.LeaveRoom();
+        roomItemList.Clear();
     } 
     
 
@@ -169,6 +220,8 @@ public class LobbyHandler : MonoBehaviourPunCallbacks
     public void OnClickStart()
     {
         photonView.RPC("LoadGame", RpcTarget.All);
+        PhotonNetwork.CurrentRoom.IsVisible = false;
+        PhotonNetwork.CurrentRoom.IsOpen = false;
     }
 
 
