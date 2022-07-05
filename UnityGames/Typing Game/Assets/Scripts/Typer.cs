@@ -30,8 +30,8 @@ public class Typer : MonoBehaviourPunCallbacks
     public float backToRoomTimer = 5f;
     public GameObject endGameCountDown;
     public Text endGameCountDownText;
-    
-
+    public Text gameTimeText;
+    public Text wpmCounter;
     void Start()
     {
         SetCurrentWord();
@@ -55,7 +55,7 @@ public class Typer : MonoBehaviourPunCallbacks
     void Update()
     {
         CheckInput(); // Can put function in FixedUpdate instead so that logic is not bound by frame timings
-        Points.text = pointCount.ToString();
+        Points.text = "Points: " + pointCount.ToString();
         if (!inEndScreen)
         { 
             ShowEndScreen();
@@ -107,25 +107,27 @@ public class Typer : MonoBehaviourPunCallbacks
         return remainingWord.Length == 0;
     }
 
-    private bool IsPlayerFinished()
+    private bool IsPlayerFinished(short gamePoints)
     {
-        return (pointCount >= 1);
+        return (pointCount >= gamePoints);
     }
 
 
     private void ShowEndScreen()
     {
-        if (IsPlayerFinished())
+        if (IsPlayerFinished(GamePointSetter.point))
         {
             gameText.SetActive(false);
             finishText.SetActive(true);
             finishTime.text = "You finished in: " + gameTime.ToString("F2") + "s";
+            wpmCounter.text = "WPM: " + CalculateWPM(gameTime, GamePointSetter.point).ToString("F0");
             inEndScreen = true;
             
         }
         else
         {
             gameTime += Time.deltaTime;
+            gameTimeText.text = "Time: " + gameTime.ToString("F2");
         }
     }
     
@@ -149,12 +151,13 @@ public class Typer : MonoBehaviourPunCallbacks
 
     public void BackToRoom()
     {
-        if (playersFinished != PhotonNetwork.CurrentRoom.PlayerCount)
+        if (playersFinished < PhotonNetwork.CurrentRoom.PlayerCount)
         {
             return;
         }
-        //photonView.RPC("BackToRoomCountDown", RpcTarget.All, backToRoomTimer);
         BackToRoomCountDown();
+        PhotonNetwork.CurrentRoom.IsVisible = true;
+        PhotonNetwork.CurrentRoom.IsOpen = true;
     }
 
 
@@ -169,5 +172,10 @@ public class Typer : MonoBehaviourPunCallbacks
         endGameCountDown.SetActive(true);
         backToRoomTimer -= Time.deltaTime;
         endGameCountDownText.text = "Returning to Lobby in: "+ backToRoomTimer.ToString("F1") + "s";
+    }
+
+    public float CalculateWPM(float finishTime, short wordsTyped)
+    {
+        return 60 * wordsTyped/ finishTime;
     }
 }
