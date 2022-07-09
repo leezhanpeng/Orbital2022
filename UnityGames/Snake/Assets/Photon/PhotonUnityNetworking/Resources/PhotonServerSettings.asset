@@ -42,6 +42,12 @@ MonoBehaviour:
   - PlayerEndGame
   - RPC_LoadGameOthers
   - SendVisibility
+  - DeductJewel
+  - Extend
+  - Okspeed
+  - RemoveFloatWords
+  - Slow
+  - Speed
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
