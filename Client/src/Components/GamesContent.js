@@ -35,7 +35,7 @@ const GamesContent = () => {
             </div>
           </a>
 
-          <a href="#" className={styles["adivforgame"]}>
+          <a href="/games/snakebattle" className={styles["adivforgame"]}>
             <div className={styles["game"]}>
               <div><img src={snake} className={styles["gameimg"]}></img></div>
               <div className={styles["gametitle"]}>

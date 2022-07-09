@@ -24,6 +24,7 @@ import Logout from "./Pages/LoggedOut"
 
 import Tetris from "./Games/Tetris.js";
 import Typing from "./Games/Typing.js";
+import Snake from "./Games/Snake.js";
 
 import Friendslist from "./Pages/Friends.js";
 import AddFriend from './Pages/AddFriend.js';
@@ -62,6 +63,7 @@ function App() {
 
           <Route path="/games/tetris" element={<Tetris />} />
           <Route path="/games/typingspeeddemon" element={<Typing />} />
+          <Route path="/games/snakebattle" element={<Snake />} />
 
           <Route path="/friendslist" element={<Friendslist />} />
           <Route path="/addfriend" element={<AddFriend />} />
