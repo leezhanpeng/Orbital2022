@@ -267,7 +267,7 @@ public class Snake : MonoBehaviourPunCallbacks
         else if (other.tag == "Okspeed")
         {
             powerUpsCount += 1;
-            oppSaboed.text = "Power Ups Received: " + oppSaboedCount;
+            powerUps.text = "Power Ups Received: " + powerUpsCount;
             Okspeed();
         }
         else if (other.tag == "Obstacle")
@@ -282,6 +282,7 @@ public class Snake : MonoBehaviourPunCallbacks
         Time.fixedDeltaTime = 0.08f;
     }
 
+    [PunRPC]
     private void Slow()
     {
         saboText.SetActive(true);
@@ -291,6 +292,7 @@ public class Snake : MonoBehaviourPunCallbacks
         Invoke("BackToGame", 15f);
     }
 
+    [PunRPC]
     private void Extend()
     {
         saboText.SetActive(true);
@@ -306,6 +308,7 @@ public class Snake : MonoBehaviourPunCallbacks
         length.text = "Length: " + currentLength;      
     }
 
+    [PunRPC]
     private void Speed()
     {
         saboText.SetActive(true);
@@ -315,6 +318,7 @@ public class Snake : MonoBehaviourPunCallbacks
         Invoke("BackToGame", 15f);
     }
 
+    [PunRPC]
     private void DeductJewel()
     {
         saboText.SetActive(true);
@@ -324,6 +328,7 @@ public class Snake : MonoBehaviourPunCallbacks
         JewelText(jewelCount);
     }
 
+    [PunRPC]
     private void Okspeed()
     {
         buffText.SetActive(true);
@@ -340,6 +345,7 @@ public class Snake : MonoBehaviourPunCallbacks
         finishScene.SetActive(true);
     }
 
+    [PunRPC]
     private void RemoveFloatWords()
     {
         saboText.SetActive(false);
