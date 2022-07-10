@@ -31,7 +31,11 @@ public class CurrentRoomCanvas : MonoBehaviourPunCallbacks
             {
                 base.photonView.RPC("RPC_LoadGameOthers", RpcTarget.Others);
             }
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            Scene scene = SceneManager.GetSceneByBuildIndex(1);
+            if (!(scene.name == "Tetris" && scene.isLoaded))
+            {
+                SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            }
 
         }
         // }
@@ -47,6 +51,10 @@ public class CurrentRoomCanvas : MonoBehaviourPunCallbacks
         // game.SetActive(true);
         // MainCanvasManager.Instance.GameCanvas.transform.SetAsLastSibling();
         // endGameCanvas.SetActive(true);
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        Scene scene = SceneManager.GetSceneByBuildIndex(1);
+        if (!(scene.name == "Tetris" && scene.isLoaded))
+        {
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        }
     }
 }
