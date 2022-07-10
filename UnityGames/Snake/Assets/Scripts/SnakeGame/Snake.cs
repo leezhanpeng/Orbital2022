@@ -115,8 +115,8 @@ public class Snake : MonoBehaviourPunCallbacks
             }
 
             this.transform.position = new Vector3(
-                Mathf.Round(this.transform.position.x) + _direction.x,
-                Mathf.Round(this.transform.position.y) + _direction.y,
+                this.transform.position.x + _direction.x,
+                this.transform.position.y + _direction.y,
                 0.0f
             );
         }
