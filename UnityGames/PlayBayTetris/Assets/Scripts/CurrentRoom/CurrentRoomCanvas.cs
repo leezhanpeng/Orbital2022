@@ -27,8 +27,11 @@ public class CurrentRoomCanvas : MonoBehaviourPunCallbacks
             // MainCanvasManager.Instance.GameCanvas.transform.SetAsLastSibling();
             // game.SetActive(true);
             // endGameCanvas.SetActive(true);
-            base.photonView.RPC("RPC_LoadGameOthers", RpcTarget.Others);
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            if (PhotonNetwork.CurrentRoom.PlayerCount != 1)
+            {
+                base.photonView.RPC("RPC_LoadGameOthers", RpcTarget.Others);
+                SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            }
 
         }
         // }
