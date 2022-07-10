@@ -6,6 +6,7 @@ import NotLoggedIn from '../Pages/NotLoggedIn.js';
 import CheckAuth from '../Pages/CheckAuth.js';
 
 import { Unity, useUnityContext } from "react-unity-webgl";
+import { useCookies } from 'react-cookie';
 import styles from "../Styles/gamepages/snake.module.css";
 
 function Snake() {
@@ -22,6 +23,19 @@ function Snake() {
 
     fetchData();
   }, []);
+
+  function parseJwt(token) {
+    if (!token) { return; }
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  }
+
+  const [cookies] = useCookies();
+
+  const usernameDisplay = () => {
+    return parseJwt(cookies.accesstoken).username;
+  }
 
   const { unityProvider } = useUnityContext({
     loaderUrl: "../SnakeBuild/WebGLBuildSnake.loader.js",
