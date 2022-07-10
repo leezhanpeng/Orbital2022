@@ -30,4 +30,9 @@ public class PlayMenuScene : MonoBehaviourPunCallbacks
         
         base.OnConnectedToMaster();
     }
+
+    public void AddName(string name)
+    {
+        nameText.text = name;
+    }
 }
