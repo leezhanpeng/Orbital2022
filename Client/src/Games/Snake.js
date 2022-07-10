@@ -44,7 +44,7 @@ function Snake() {
       <div>
         <Navbar />
           <div className={styles["client"]}>
-            <Unity unityProvider={unityProvider} className={styles["tetris"]}/>
+            <Unity unityProvider={unityProvider} className={styles["snake"]}/>
           </div>
         <Footer />
       </div>
