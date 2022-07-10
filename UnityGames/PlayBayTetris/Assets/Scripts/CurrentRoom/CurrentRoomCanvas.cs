@@ -30,8 +30,8 @@ public class CurrentRoomCanvas : MonoBehaviourPunCallbacks
             if (PhotonNetwork.CurrentRoom.PlayerCount != 1)
             {
                 base.photonView.RPC("RPC_LoadGameOthers", RpcTarget.Others);
-                SceneManager.LoadScene(1, LoadSceneMode.Additive);
             }
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
 
         }
         // }
