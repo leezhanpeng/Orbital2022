@@ -5,8 +5,12 @@
     height: 95vh;
   }
   
-  .snake {
-    width: 1200px;
-    height: 520px;
-    margin: 120px;
-  }
+.snake {
+  width: 1200px;
+  height: 520px;
+  margin: 120px;
+}
+
+.invisinput {
+  display: none;
+}

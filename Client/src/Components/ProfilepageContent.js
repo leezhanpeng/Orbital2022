@@ -67,9 +67,49 @@ const ProfilepageContent = () => {
             }
         }
     }
-
         fetchData();
+    });
 
+    const [tetrisRec, setTetrisRec] = useState({});
+    useEffect(() => {
+        const fetchData = async () => {
+        const result = await fetch('/tetris-records');
+        const jsonResult = await result.json();
+        const tetris = jsonResult.filter(x => x.username === username)
+        if (tetris.length !== 0)
+        {
+            setTetrisRec(tetris[0]);
+        }
+    }
+        fetchData();
+    });
+
+    const [typingRec, setTypingRec] = useState({});
+    useEffect(() => {
+        const fetchData = async () => {
+        const result = await fetch('/typing-records');
+        const jsonResult = await result.json();
+        const typing = jsonResult.filter(x => x.username === username)
+        if (typing.length !== 0)
+        {
+            setTypingRec(typing[0]);
+        }
+    }
+        fetchData();
+    });
+
+    const [snakeRec, setSnakeRec] = useState({});
+    useEffect(() => {
+        const fetchData = async () => {
+        const result = await fetch('/snake-records');
+        const jsonResult = await result.json();
+        const snake = jsonResult.filter(x => x.username === username)
+        if (snake.length !== 0)
+        {
+            setSnakeRec(snake[0]);
+        }
+    }
+        fetchData();
     });
 
     const personalProfileCheck = [];
@@ -133,17 +173,27 @@ const ProfilepageContent = () => {
             <div className={styles["statisticsbox"]}>
                 <label className={styles["statisticslabel"]}>Statistics</label>
                 <div className={styles["statsinfo"]}>
-                    <label className={styles["statstitle"]}>Tetris</label>
-                    <label className={styles["statscontent"]}>Fastest 40L - 1:30.61</label>
-                    <label className={styles["statscontent"]}>Career Lines Cleared - 6523</label>
-                    <label className={styles["statscontent"]}>Career Tetrises 4L Cleared - 524</label>
-                    <label className={styles["statscontent"]}>Career T-spins Done - 129</label>
+                    <label className={styles["statstitle"]}>Tetris Line Clear 40L</label>
+                    <label className={styles["statscontent"]}>Total Wins - {tetrisRec.tetrisWins}</label>
+                    <label className={styles["statscontent"]}>Fastest 40L - {tetrisRec.recordTime}</label>
+                    <label className={styles["statscontent"]}>Career 40L Finished - {tetrisRec.total40LinesFinished}</label>
+                    <label className={styles["statscontent"]}>Career Lines Cleared - {tetrisRec.totalLinesCleared}</label>
+                    <label className={styles["statscontent"]}>Career Tetrises 4L Cleared - {tetrisRec.tetrisesCleared}</label>
                 </div>
                 <div className={styles["statsinfo"]}>
-                    <label className={styles["statstitle"]}>Snake</label>
-                    <label className={styles["statscontent"]}>Career Jewels Collected - 1235</label>
-                    <label className={styles["statscontent"]}>Career Opponents Eliminated - 51</label>
-                    <label className={styles["statscontent"]}>Maximum Length Obtained - 42U</label>
+                    <label className={styles["statstitle"]}>Typing Speed Demon</label>
+                    <label className={styles["statscontent"]}>Total Wins - {typingRec.typingWins}</label>
+                    <label className={styles["statscontent"]}>Record Words Per Minute - {typingRec.recordWPM}</label>
+                    <label className={styles["statscontent"]}>Career Words Cleared - {typingRec.wordsCleared}</label>
+                </div>
+                <div className={styles["statsinfo"]}>
+                    <label className={styles["statstitle"]}>Snake Battle</label>
+                    <label className={styles["statscontent"]}>Total Wins - {snakeRec.snakeWins}</label>
+                    <label className={styles["statscontent"]}>Fastest 20 Jewels - {snakeRec.recordTime}</label>
+                    <label className={styles["statscontent"]}>Longest Length - {snakeRec.recordLength}</label>
+                    <label className={styles["statscontent"]}>Career Jewels Collected - {snakeRec.jewelsCollected}</label>
+                    <label className={styles["statscontent"]}>Career Sabotages Given - {snakeRec.sabosGiven}</label>
+                    <label className={styles["statscontent"]}>Career Power Ups Received - {snakeRec.powerupsReceived}</label>
                 </div>
             </div>
         </div>

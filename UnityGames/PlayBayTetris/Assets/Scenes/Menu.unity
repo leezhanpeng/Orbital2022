@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   introText: {fileID: 1895322529}
   lobbyUsername: {fileID: 1318302025}
+  recordTime: {fileID: 610101041}
 --- !u!1 &106048990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,7 +2182,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fastest 40L - 01:58.33
+  m_Text: Fastest 40L - NIL
 --- !u!222 &610101042
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3882,7 +3883,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SpindleTwing
+  m_Text: USERNAME
 --- !u!222 &1318302026
 CanvasRenderer:
   m_ObjectHideFlags: 0

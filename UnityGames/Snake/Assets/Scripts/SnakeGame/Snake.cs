@@ -5,9 +5,16 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using System.Runtime.InteropServices;
 
 public class Snake : MonoBehaviourPunCallbacks
 {
+    [DllImport("__Internal")]
+    private static extern void GameEnd(string timeFinished, int RecordLength, int JewelsCollected, int SaboAmt, int PowerUpGet);
+
+    int allJewels = 0;
+    int maxLength = 0;
+
     [SerializeField] TextMeshProUGUI jewelCountText;
     [SerializeField] GameObject finishScene;
 
@@ -215,8 +222,13 @@ public class Snake : MonoBehaviourPunCallbacks
     {
         if (other.tag == "Jewel")
         {
-            Grow();
+            allJewels += 1;
             currentLength += 2;
+            Grow();
+            if (currentLength > maxLength)
+            {
+                maxLength = currentLength;
+            }
             length.text = "Length: " + currentLength;
             float spawnValue = Random.Range(0,20);
             if (spawnValue <= 2)
@@ -324,7 +336,7 @@ public class Snake : MonoBehaviourPunCallbacks
         saboText.SetActive(true);
         saboActive.text = "JEWELS DEDUCTED!";
         Invoke("RemoveFloatWords", 15f);
-        jewelCount -= 5;
+        jewelCount -= 2;
         JewelText(jewelCount);
     }
 
@@ -340,6 +352,7 @@ public class Snake : MonoBehaviourPunCallbacks
 
     private void GameOver()
     {
+        GameEnd(snakeTime.text, maxLength, allJewels, oppSaboedCount, powerUpsCount);
         Invoke("BackToMenu", 6f);
         Timer.instance.EndTimer();
         finishScene.SetActive(true);

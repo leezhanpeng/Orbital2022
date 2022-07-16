@@ -243,6 +243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introText: {fileID: 1895322529}
+  lobbyUsername: {fileID: 1318302025}
+  recordTime: {fileID: 610101041}
 --- !u!1 &106048990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,7 +2182,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fastest 20 Jewel - 00:59.53
+  m_Text: Fastest 20 Jewels - NIL
 --- !u!222 &610101042
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3881,7 +3883,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SpindleTwing
+  m_Text: USERNAME
 --- !u!222 &1318302026
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5642,12 +5644,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hello USERNAME
-
-    We are currently unable to pull data.
-
-    However,
-    game can still be played.'
+  m_text: Hello USERNAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58afb1e8090077e468cada47af1d5aa9, type: 2}
   m_sharedMaterial: {fileID: 3358653800626978233, guid: 58afb1e8090077e468cada47af1d5aa9, type: 2}

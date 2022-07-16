@@ -2,16 +2,23 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 public class Board : MonoBehaviour
 {
+    [DllImport("__Internal")]
+    private static extern void GameEnd(string timeFinished, int ClearedLines, int ClearedGame, int fourLinesCleared);
+
     public Tilemap tilemap { get; private set; }
     public TetrominoData[] tetrominoes;
     public Piece activePiece { get; private set; }
     public Vector3Int spawnPosition = new Vector3Int(-1, 7, 0);
     public Vector2Int boardSize = new Vector2Int(10, 22);
     public int linesCleared;
+    public int tetrisesCleared = 0;
+    public int tspinsDone;
     
+    public bool finishedGame = false;
     private bool gameRunning = false;
     [SerializeField] Text linesClearedText;
 
@@ -75,19 +82,32 @@ public class Board : MonoBehaviour
             this.activePiece.Initialise(this, this.spawnPosition, data);
 
             if (IsValidPosition(this.activePiece, this.spawnPosition)) {
-                Set(this.activePiece);
+                Set(this.activePiece);      
             }
             else
             {
+                if (!finishedGame)
+                {
                 GameOver();
+                }
             }
         }
     }
 
     private void GameOver()
     {
+        finishedGame = true;
         gameRunning = false;
         Timer.instance.EndTimer();
+        if (linesCleared < 40)
+        {
+            GameEnd("FAILED", linesCleared, 0, tetrisesCleared);
+        }
+        else
+        {
+            GameEnd(tetrisTime.text, linesCleared, 1, tetrisesCleared);
+        }
+
 
         var tAnim = tetrominoAnim.GetComponent<Animator>();
         var ghAnim = ghostAnim.GetComponent<Animator>();
@@ -112,7 +132,7 @@ public class Board : MonoBehaviour
         initialTimer.SetActive(true);
         tetrisGame.SetActive(false);
         endingScene.SetActive(false);
-        if (linesClearedText.text == "Lines Cleared: 40/40" || linesClearedText.text == "Lines Cleared: 41/40" || linesClearedText.text == "Lines Cleared: 42/40" || linesClearedText.text == "Lines Cleared: 43/40")
+        if (linesCleared >= 40)
         {
             successOrFailText.text = "SUCCESS";
             successOrFailDesc.text = "You have cleared 40 lines!";
@@ -170,15 +190,21 @@ public class Board : MonoBehaviour
     {
         RectInt bounds = this.Bounds;
         int row = bounds.yMin;
+        int clearedAmt = 0;
         while (row < bounds.yMax)
         {
             if (IsLineFull(row)) {
                 LineClear(row);
                 linesCleared++;
+                clearedAmt++;
                 LinesClearedChange();
             } else {
                 row++;
             }
+        }
+        if (clearedAmt == 4)
+        {
+            tetrisesCleared++;
         }
     }
 
@@ -186,7 +212,7 @@ public class Board : MonoBehaviour
     {
         linesClearedText.text = "Lines Cleared: " + linesCleared.ToString() + "/40";
 
-        if (linesCleared >= 40)
+        if (linesCleared >= 40 && !finishedGame)
         {
             GameOver();
         }

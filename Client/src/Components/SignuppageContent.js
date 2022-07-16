@@ -25,7 +25,7 @@ const SignuppageContent = () => {
                             <input id="email" name="email" className={styles["inputbox"]} type={"email"} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder={"Email"} required></input>
                         </div>
                         <div className={styles["input"]}>
-                            <input id="username" name="username" className={styles["inputbox"]} type={"text"} placeholder={"Username (Max 12 Char.)"} maxlength = "12" required></input>
+                            <input id="username" name="username" className={styles["inputbox"]} type={"text"} placeholder={"Username (Max 12 Char.)"} maxLength = "12" required></input>
                         </div>
                         <div className={styles["input"]}>
                             <input id="password" name="password" className={styles["inputbox"]} type={"password"} placeholder={"Password"} required></input>
@@ -39,6 +39,52 @@ const SignuppageContent = () => {
                         <div className={styles["invisinput"]}>
                             <input id="bios" name="bios" type={"text"} value={""} readOnly></input>
                         </div>
+
+
+                        <div className={styles["invisinput"]}>
+                            <input id="recordTime" name="recordTime" type={"text"} value={"NIL"} readOnly></input>
+                        </div>
+                        <div className={styles["invisinput"]}>
+                            <input id="tetrisWins" name="tetrisWins" type={"number"} value={0} readOnly></input>
+                        </div>
+                        <div className={styles["invisinput"]}>
+                            <input id="total40LinesFinished" name="total40LinesFinished" type={"number"} value={0} readOnly></input>
+                        </div>
+                        <div className={styles["invisinput"]}>
+                            <input id="totalLinesCleared" name="totalLinesCleared" type={"number"} value={0} readOnly></input>
+                        </div>
+                        <div className={styles["invisinput"]}>
+                            <input id="tetrisesCleared" name="tetrisesCleared" type={"number"} value={0} readOnly></input>
+                        </div>
+
+
+                        <div className={styles["invisinput"]}>
+                            <input id="typingWins" name="typingWins" type={"number"} value={0} readOnly></input>
+                        </div>
+                        <div className={styles["invisinput"]}>
+                            <input id="recordWPM" name="recordWPM" type={"number"} value={0} readOnly></input>
+                        </div>
+                        <div className={styles["invisinput"]}>
+                            <input id="wordsCleared" name="wordsCleared" type={"number"} value={0} readOnly></input>
+                        </div>
+
+
+                        <div className={styles["invisinput"]}>
+                            <input id="snakeWins" name="snakeWins" type={"number"} value={0} readOnly></input>
+                        </div>
+                        <div className={styles["invisinput"]}>
+                            <input id="recordLength" name="recordLength" type={"number"} value={0} readOnly></input>
+                        </div>
+                        <div className={styles["invisinput"]}>
+                            <input id="jewelsCollected" name="jewelsCollected" type={"number"} value={0} readOnly></input>
+                        </div>
+                        <div className={styles["invisinput"]}>
+                            <input id="sabosGiven" name="sabosGiven" type={"number"} value={0} readOnly></input>
+                        </div>
+                        <div className={styles["invisinput"]}>
+                            <input id="powerupsReceived" name="powerupsReceived" type={"number"} value={0} readOnly></input>
+                        </div>
+
                     </div>
                     <button className={styles["btn"]}>Sign up</button>
                 </form>

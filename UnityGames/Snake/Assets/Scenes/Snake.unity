@@ -739,7 +739,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.07396507, w: 0}
+  m_margin: {x: 0, y: 0, z: -1.613369, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4037,6 +4037,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5086709786677023654, guid: 99bcde3ac8e78d54cb6342f9360b43af, type: 3}
+      propertyPath: snakeTime
+      value: 
+      objectReference: {fileID: 2003795620}
     - target: {fileID: 5086709786677023655, guid: 99bcde3ac8e78d54cb6342f9360b43af, type: 3}
       propertyPath: sceneViewId
       value: 1
