@@ -43,16 +43,23 @@ app.post('/add-newsletter', (req, res) => {
 
 const User = require('./schemas/user.js');
 const DisplayPic = require('./schemas/displaypic.js');
+const TetrisRecord = require('./schemas/tetris.js');
+const TypingRecord = require('./schemas/typing.js');
+const SnakeRecord = require('./schemas/snake.js');
 
 app.post('/new-user', async (req, res) => {
     const presentUser = await User.findOne({username: req.body.username});
     if (!presentUser)
     {
         const user = new User(req.body);
-        const dp = new DisplayPic({
-            username: req.body.username,
-            dp: req.body.dp});
+        const dp = new DisplayPic(req.body);
+        const tetris = new TetrisRecord(req.body);
+        const typing = new TypingRecord(req.body);
+        const snake = new SnakeRecord(req.body);
         dp.save();
+        tetris.save();
+        typing.save();
+        snake.save();
         user.password = await bcrypt.hash(user.password, 10);
         user.save()
             .then(() => {
@@ -134,7 +141,166 @@ app.post('/change-bios', (req, res) => {
     res.redirect("/profile/" + req.body.username);
 })
 
+app.get('/tetris-records', (req, res) => {
+    TetrisRecord.find()
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+})
+app.post('/update-tetris-records', async (req, res) => {
+    const user = await TetrisRecord.findOne({username: req.body.username});
+    if (req.body.finalclearedlines)
+    {
+        let timing = "";
+        let succeed = true;
+        if (req.body.finaltime != "FAILED")
+        {
+            timing = req.body.finaltime.split(' ')[1];
+        }
+        else
+        {
+            succeed = false;
+        }
+        const bestTiming = user.recordTime;
+        let updateTime = false;
+        if (succeed && bestTiming != "NIL")
+        {
+            if (parseInt(timing.slice(0, 2)) < parseInt(bestTiming.slice(0, 2)))
+            {
+                updateTime = true;
+            }
+            else if (parseInt(timing.slice(0, 2)) == parseInt(bestTiming.slice(0, 2)))
+            {
+                if (parseInt(timing.slice(3, 5)) < parseInt(bestTiming.slice(3, 5)))
+                {
+                    updateTime = true;
+                }
+                else if (parseInt(timing.slice(3, 5)) == parseInt(bestTiming.slice(3, 5)))
+                {
+                    if (parseInt(timing.slice(6, 8)) < parseInt(bestTiming.slice(6, 8)))
+                    {
+                        updateTime = true;
+                    }
+                }
+            }
+        }
+        const setLines = parseInt(req.body.finalclearedlines) + user.totalLinesCleared;
+        const setGameFinished = parseInt(req.body.clearedgame) + user.total40LinesFinished;
+        const setTetrisesCleared = parseInt(req.body.fourlinescleared) + user.tetrisesCleared;
+        if (updateTime || (bestTiming == "NIL" && succeed))
+        {
+            TetrisRecord.updateOne({username: req.body.username}, {$set: {totalLinesCleared: setLines, recordTime: timing, total40LinesFinished: setGameFinished, tetrisesCleared: setTetrisesCleared}}, (err, res) => {
+            });
+            req.header("Data sent.");
+        }
+        else
+        {
+            TetrisRecord.updateOne({username: req.body.username}, {$set: {totalLinesCleared: setLines, total40LinesFinished: setGameFinished, tetrisesCleared: setTetrisesCleared}}, (err, res) => {
+            });
+            req.header("Data sent.");
+        }
+    }
+    else
+    {
+        const setWins = parseInt(req.body.wincount) + user.tetrisWins;
+        TetrisRecord.updateOne({username: req.body.username}, {$set: {tetrisWins: setWins}}, (err, res) => {
+        });
+        req.header("Data sent.");
+    }
+});
+
+app.get('/typing-records', (req, res) => {
+    TypingRecord.find()
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+})
+app.get('/snake-records', (req, res) => {
+    SnakeRecord.find()
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+})
+
+app.post('/update-snake-records', async (req, res) => {
+    const user = await SnakeRecord.findOne({username: req.body.username});
+    if (req.body.totaljewels)
+    {
+        let timing = "";
+        let succeed = true;
+        if (req.body.finaltime != "FAILED")
+        {
+            timing = req.body.finaltime.split(' ')[1];
+        }
+        else
+        {
+            succeed = false;
+        }
+        const bestTiming = user.recordTime;
+        let updateTime = false;
+        if (succeed && bestTiming != "NIL")
+        {
+            if (parseInt(timing.slice(0, 2)) < parseInt(bestTiming.slice(0, 2)))
+            {
+                updateTime = true;
+            }
+            else if (parseInt(timing.slice(0, 2)) == parseInt(bestTiming.slice(0, 2)))
+            {
+                if (parseInt(timing.slice(3, 5)) < parseInt(bestTiming.slice(3, 5)))
+                {
+                    updateTime = true;
+                }
+                else if (parseInt(timing.slice(3, 5)) == parseInt(bestTiming.slice(3, 5)))
+                {
+                    if (parseInt(timing.slice(6, 8)) < parseInt(bestTiming.slice(6, 8)))
+                    {
+                        updateTime = true;
+                    }
+                }
+            }
+        }
+        const setPower = parseInt(req.body.totalpower) + user.powerupsReceived;
+        const setSabos = parseInt(req.body.totalsabo) + user.sabosGiven;
+        const setJewels = parseInt(req.body.totaljewels) + user.jewelsCollected;
+        let setRecordLengthCleared = user.recordLength
+        if (req.body.longestlength > user.recordLength)
+        {
+            setRecordLengthCleared = parseInt(req.body.longestlength);
+        }
+        if (updateTime || (bestTiming == "NIL" && succeed))
+        {
+            SnakeRecord.updateOne({username: req.body.username}, {$set: {recordTime: timing, recordLength: setRecordLengthCleared, jewelsCollected: setJewels, sabosGiven: setSabos, powerupsReceived: setPower}}, (err, res) => {
+            });
+            req.header("Data sent.");
+        }
+        else
+        {
+            SnakeRecord.updateOne({username: req.body.username}, {$set: {recordLength: setRecordLengthCleared, jewelsCollected: setJewels, sabosGiven: setSabos, powerupsReceived: setPower}}, (err, res) => {
+            });
+            req.header("Data sent.");
+        }
+    }
+    else
+    {
+        const setWins = parseInt(req.body.wincount) + user.snakeWins;
+        SnakeRecord.updateOne({username: req.body.username}, {$set: {snakeWins: setWins}}, (err, res) => {
+        });
+        req.header("Data sent.");
+    }
+});
+
+
 const FriendRequest = require('./schemas/friendreqs.js');
+const { update } = require('./schemas/newsletter.js');
 
 app.post('/add-friend', async (req, res) => {
     const userToAdd = await User.findOne({username: req.body.to});
@@ -152,7 +318,12 @@ app.post('/add-friend', async (req, res) => {
             if (friendExist.length == 0)
             {
                 const friendReq = await FriendRequest.findOne({from: req.body.from, to:req.body.to});
-                if (!friendReq)
+                const returnReq = await FriendRequest.findOne({from: req.body.to, to:req.body.from});
+                if (returnReq)
+                {
+                    res.redirect("/returnfriendrequest");
+                }
+                else if (!friendReq)
                 {
                     const actualRequest = new FriendRequest(req.body);
                     actualRequest.save()

@@ -5,6 +5,7 @@ public class PlayerNetwork : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI introText;
     [SerializeField] Text lobbyUsername;
+    [SerializeField] Text recordTime;
 
     public static PlayerNetwork Instance;
     public string PlayerName { get; private set; }
@@ -25,4 +26,8 @@ public class PlayerNetwork : MonoBehaviour
         lobbyUsername.text = PlayerName;
     }
 
+    private void Record(string time)
+    {
+        recordTime.text = "Fastest 40L - " + time;
+    }
 }

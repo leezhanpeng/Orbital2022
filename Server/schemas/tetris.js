@@ -6,24 +6,24 @@ const tetrisRecordSchema = new Schema({
         type: String,
         required: true
     },
-    record: {
+    recordTime: {
         type: String,
         required: true
     },
-    wins: {
-        type: Int16Array,
-        require: true
+    tetrisWins: {
+        type: Number,
+        required: true
     },
-    linesCleared: {
-        type: Int16Array,
+    total40LinesFinished: {
+        type: Number,
+        required: true
+    },
+    totalLinesCleared: {
+        type: Number,
         required: true
     },
     tetrisesCleared: {
-        type: Int16Array,
-        required: true
-    },
-    tspinsDone: {
-        type: Int16Array,
+        type: Number,
         required: true
     }
     

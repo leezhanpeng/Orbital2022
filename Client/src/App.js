@@ -33,6 +33,7 @@ import AlreadyAddedFriend from './Pages/AlreadyAddedFriend.js';
 import AddFriendError from './Pages/FriendNotReg.js';
 import AlreadyFriends from './Pages/AlreadyFriends.js';
 import AddSelf from './Pages/AddSelf.js';
+import ReturnFriend from './Pages/ReturnFriend.js';
 
 import PageNotFound from './Pages/PageNotFound.js';
 
@@ -72,6 +73,7 @@ function App() {
           <Route path="/addfrienderror" element={<AddFriendError />} />
           <Route path="/alreadyfriends" element={<AlreadyFriends />} />
           <Route path="/addedself" element={<AddSelf />} />
+          <Route path="/returnfriendrequest" element={<ReturnFriend />} />
 
 
           
