@@ -64,9 +64,6 @@ const FriendsList = () => {
 
     });
 
-    function deleteFriend() {
-        document.getElementById("delete").submit();
-    }
 
     return (
         <div>
@@ -118,7 +115,7 @@ const FriendsList = () => {
                                         <input id="to" name="to" type={"text"} value={friend} readOnly></input>
                                     </div>
                                     <div className={styles["biniconholder"]}>
-                                    <button className={styles["button"]}><img className={styles["binicon"]} src={bin}></img></button>
+                                        <button className={styles["button"]}><img className={styles["binicon"]} src={bin}></img></button>
                                     </div>
                                 </form>
                             </div>
