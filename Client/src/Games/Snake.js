@@ -97,6 +97,12 @@ function Snake() {
 
   const onSubmit = () => {
     window.location.reload(false)
+    setTimeout(test,2000);
+  }
+
+  function test()
+  {
+    console.log("aerherhgeragh")
   }
 
   if (auth[0].allowaccess === "checking")
