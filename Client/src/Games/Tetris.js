@@ -96,7 +96,6 @@ function Tetris() {
   }, [addEventListener, removeEventListener, handleAddWin]);
 
   const onSubmit = () => {
-    window.location.reload(false)
   }
 
   if (auth[0].allowaccess === "checking")
