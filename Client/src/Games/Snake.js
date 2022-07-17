@@ -96,9 +96,12 @@ function Snake() {
   }, [addEventListener, removeEventListener, handleAddWin]);
 
   const onSubmit = () => {
-    window.stop();
+    setTimeout(stopWindow, 2000);
   }
 
+  function stopWindow() {
+    window.stop();
+  }
 
 
   if (auth[0].allowaccess === "checking")
