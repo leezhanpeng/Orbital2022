@@ -194,13 +194,13 @@ app.post('/update-tetris-records', async (req, res) => {
         {
             TetrisRecord.updateOne({username: req.body.username}, {$set: {totalLinesCleared: setLines, recordTime: timing, total40LinesFinished: setGameFinished, tetrisesCleared: setTetrisesCleared}}, (err, res) => {
             });
-            res.status(200).end();
+            res.status(200);
         }
         else
         {
             TetrisRecord.updateOne({username: req.body.username}, {$set: {totalLinesCleared: setLines, total40LinesFinished: setGameFinished, tetrisesCleared: setTetrisesCleared}}, (err, res) => {
             });
-            res.status(200).end();
+            res.status(200);
         }
     }
     else
@@ -208,7 +208,7 @@ app.post('/update-tetris-records', async (req, res) => {
         const setWins = parseInt(req.body.wincount) + user.tetrisWins;
         TetrisRecord.updateOne({username: req.body.username}, {$set: {tetrisWins: setWins}}, (err, res) => {
         });
-        res.status(200).end();
+        res.status(200);
     }
 });
 
@@ -280,13 +280,13 @@ app.post('/update-snake-records', async (req, res) => {
         {
             SnakeRecord.updateOne({username: req.body.username}, {$set: {recordTime: timing, recordLength: setRecordLengthCleared, jewelsCollected: setJewels, sabosGiven: setSabos, powerupsReceived: setPower}}, (err, res) => {
             });
-            res.status(200).end();
+            res.status(200);
         }
         else
         {
             SnakeRecord.updateOne({username: req.body.username}, {$set: {recordLength: setRecordLengthCleared, jewelsCollected: setJewels, sabosGiven: setSabos, powerupsReceived: setPower}}, (err, res) => {
             });
-            res.status(200).end();
+            res.status(200);
         }
     }
     else
@@ -294,7 +294,7 @@ app.post('/update-snake-records', async (req, res) => {
         const setWins = parseInt(req.body.wincount) + user.snakeWins;
         SnakeRecord.updateOne({username: req.body.username}, {$set: {snakeWins: setWins}}, (err, res) => {
         });
-        res.status(200).end();
+        res.status(200);
     }
 
 });
