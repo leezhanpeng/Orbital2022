@@ -95,11 +95,6 @@ function Snake() {
     };
   }, [addEventListener, removeEventListener, handleAddWin]);
 
-  const onSubmit = (dataForm) => {
-    dataForm.preventDefault();
-    console.log("shouldnt refresh");
-  }
-
   if (auth[0].allowaccess === "checking")
   {
     return (
@@ -121,7 +116,7 @@ function Snake() {
             {
               showRecord()
             }
-            <form action={'/update-snake-records'} method={"POST"} id={"snkrec"} onSubmit={onSubmit}>
+            <form action={'/update-snake-records'} method={"POST"} id={"snkrec"} onSubmit={e => {e.preventDefault();}}>
                 <div className={styles["invisinput"]}>
                   <input id="username" name="username" type={"text"} readOnly value={usernameDisplay()}></input>                
                 </div>
@@ -141,7 +136,7 @@ function Snake() {
                   <input id="totalpower" name="totalpower" type={"number"} readOnly value={0}></input>
                 </div>
             </form>
-            <form action={'/update-snake-records'} method={"POST"} id={"winrec"}  onSubmit={onSubmit}>
+            <form action={'/update-snake-records'} method={"POST"} id={"winrec"}  onSubmit={e => {e.preventDefault();}}>
                 <div className={styles["invisinput"]}>
                   <input id="username" name="username" type={"text"} readOnly value={usernameDisplay()}></input>                
                 </div>
