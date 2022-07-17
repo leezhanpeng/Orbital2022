@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react'
 import styles from "../Styles/homepage.module.css"
 import { useCookies } from 'react-cookie';
 
-import profilepictest from "../Assets/testprofilepic.png"
-import profilepictest2 from "../Assets/baseprofilepic.png"
+import profile from "../Assets/profilelogo.png";
+import profilepictest2 from "../Assets/testprofilepic.png"
+
 
 const HomepageContent = () => {
   
@@ -37,6 +38,43 @@ const HomepageContent = () => {
     return parseJwt(cookies.accesstoken).username;
   }
 
+  const [tetrisRec, setTetrisRec] = useState([]);
+  useEffect(() => {
+      const fetchData = async () => {
+      const result = await fetch('/tetris-records');
+      const jsonResult = await result.json();
+      let tetris = jsonResult.map(timeToMS).filter(x => x.MS !== 0);
+      tetris = tetris.sort(compare).slice(0,5);
+      setTetrisRec(tetris);
+  }
+      fetchData();
+  });
+
+  function timeToMS(tetObj)
+  {
+    if (tetObj.recordTime !== "NIL")
+    {
+      const times = tetObj.recordTime.split(":");
+      const secs = times[1].split(".");
+      tetObj.MS = parseInt(times[0])*60*100 + parseInt(secs[0])*100 + parseInt(times[1]);
+    }
+    else
+    {
+      tetObj.MS = 0;
+    }
+    return (tetObj);
+  }
+
+  function compare(a, b) {
+    if ( a.MS < b.MS ){
+      return -1;
+    }
+    if ( a.MS > b.MS ){
+      return 1;
+    }
+    return 0;
+  }
+
   return (
     <div>
       <div className={styles["pagecontent"]}>
@@ -60,41 +98,19 @@ const HomepageContent = () => {
                 Tetris
               </div>
 
-
-              <div className={styles["profile"]}>
-                <label className={styles["ranknumber"]}>1</label>
-                <img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img>
-                <label className={styles["username"]}>fazerunner1</label>
-                <label className={styles["recordtime"]}>01:14.85</label>
-              </div>
-
-              <div className={styles["profile"]}>
-                <label className={styles["ranknumber"]}>2</label>
-                <img src={profilepictest} className={styles["profilepic"]} alt={"profileimg"}></img>
-                <label className={styles["username"]}>jenniferchue</label>
-                <label className={styles["recordtime"]}>01:15.25</label>
-              </div>
-
-              <div className={styles["profile"]}>
-                <label className={styles["ranknumber"]}>3</label>
-                <img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img>
-                <label className={styles["username"]}>bigtower</label>
-                <label className={styles["recordtime"]}>01:19.44</label>
-              </div>
-
-              <div className={styles["profile"]}>
-                <label className={styles["ranknumber"]}>4</label>
-                <img src={profilepictest} className={styles["profilepic"]} alt={"profileimg"}></img>
-                <label className={styles["username"]}>MaxxxBurner</label>
-                <label className={styles["recordtime"]}>01:21.70</label>
-              </div>
-
-              <div className={styles["profile"]}>
-                <label className={styles["ranknumber"]}>5</label>
-                <img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img>
-                <label className={styles["username"]}>asdfgamer</label>
-                <label className={styles["recordtime"]}>01:21.98</label>
-              </div>
+              {
+                tetrisRec.map((rec, index) => (
+                  <div className={styles["profile"]}>
+                    <label className={styles["ranknumber"]}>{index + 1}</label>
+                    <img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img>
+                    <label className={styles["username"]}>{rec.username}</label>
+                    <label className={styles["recordtime"]}>{rec.recordTime}</label>
+                    <div className={styles["profileiconholder"]}>
+                        <a href={"/profile/" + rec.username}><img className={styles["profileicon"]} src={profile}></img></a>
+                    </div>
+                  </div>
+                ))
+              }
 
             </div>
 
