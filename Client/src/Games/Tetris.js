@@ -120,7 +120,7 @@ function Tetris() {
             {
               showRecord()
             }
-            <form action={'/update-tetris-records'} method={"POST"} id={"tetrec"}  onSubmit={onSubmit()}>
+            <form action={'/update-tetris-records'} method={"POST"} id={"tetrec"}  onSubmit={onSubmit}>
                 <div className={styles["invisinput"]}>
                   <input id="username" name="username" type={"text"} readOnly value={usernameDisplay()}></input>                
                 </div>
@@ -137,7 +137,7 @@ function Tetris() {
                   <input id="fourlinescleared" name="fourlinescleared" type={"number"} readOnly value={0}></input>
                 </div>
             </form>
-            <form action={'/update-tetris-records'} method={"POST"} id={"winrec"}  onSubmit={onSubmit()}>
+            <form action={'/update-tetris-records'} method={"POST"} id={"winrec"}  onSubmit={onSubmit}>
                 <div className={styles["invisinput"]}>
                   <input id="username" name="username" type={"text"} readOnly value={usernameDisplay()}></input>                
                 </div>

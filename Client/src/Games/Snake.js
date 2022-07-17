@@ -122,7 +122,7 @@ function Snake() {
             {
               showRecord()
             }
-            <form action={'/update-snake-records'} method={"POST"} id={"snkrec"} onSubmit={onSubmit()}>
+            <form action={'/update-snake-records'} method={"POST"} id={"snkrec"} onSubmit={onSubmit}>
                 <div className={styles["invisinput"]}>
                   <input id="username" name="username" type={"text"} readOnly value={usernameDisplay()}></input>                
                 </div>
@@ -142,7 +142,7 @@ function Snake() {
                   <input id="totalpower" name="totalpower" type={"number"} readOnly value={0}></input>
                 </div>
             </form>
-            <form action={'/update-snake-records'} method={"POST"} id={"winrec"}  onSubmit={onSubmit()}>
+            <form action={'/update-snake-records'} method={"POST"} id={"winrec"}  onSubmit={onSubmit}>
                 <div className={styles["invisinput"]}>
                   <input id="username" name="username" type={"text"} readOnly value={usernameDisplay()}></input>                
                 </div>
