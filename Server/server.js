@@ -281,14 +281,12 @@ app.post('/update-snake-records', async (req, res) => {
             SnakeRecord.updateOne({username: req.body.username}, {$set: {recordTime: timing, recordLength: setRecordLengthCleared, jewelsCollected: setJewels, sabosGiven: setSabos, powerupsReceived: setPower}}, (err, res) => {
             });
             res.status(200);
-            window.stop();
         }
         else
         {
             SnakeRecord.updateOne({username: req.body.username}, {$set: {recordLength: setRecordLengthCleared, jewelsCollected: setJewels, sabosGiven: setSabos, powerupsReceived: setPower}}, (err, res) => {
             });
             res.status(200);
-            window.stop();
         }
     }
     else
@@ -297,7 +295,6 @@ app.post('/update-snake-records', async (req, res) => {
         SnakeRecord.updateOne({username: req.body.username}, {$set: {snakeWins: setWins}}, (err, res) => {
         });
         res.status(200);
-        window.stop();
     }
 
 });
