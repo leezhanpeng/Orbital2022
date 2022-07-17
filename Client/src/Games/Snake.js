@@ -73,6 +73,7 @@ function Snake() {
     document.getElementById("totalsabo").value = SaboAmt;
     document.getElementById("totalpower").value = PowerUpGet;
     document.getElementById("snkrec").submit();
+    setTimeout(stopWindow, 2000);
   }, []);
 
 
@@ -86,6 +87,7 @@ function Snake() {
   const handleAddWin = useCallback((winning) => {
     document.getElementById("wincount").value = winning;
     document.getElementById("winrec").submit();
+    setTimeout(stopWindow, 2000);
   }, []);
 
   useEffect(() => {
@@ -94,10 +96,6 @@ function Snake() {
       removeEventListener("WinStats", handleAddWin);
     };
   }, [addEventListener, removeEventListener, handleAddWin]);
-
-  const onSubmit = () => {
-    setTimeout(stopWindow, 2000);
-  }
 
   function stopWindow() {
     window.stop();
@@ -125,7 +123,7 @@ function Snake() {
             {
               showRecord()
             }
-            <form action={'/update-snake-records'} method={"POST"} id={"snkrec"} onSubmit={onSubmit}>
+            <form action={'/update-snake-records'} method={"POST"} id={"snkrec"}>
                 <div className={styles["invisinput"]}>
                   <input id="username" name="username" type={"text"} readOnly value={usernameDisplay()}></input>                
                 </div>
@@ -145,7 +143,7 @@ function Snake() {
                   <input id="totalpower" name="totalpower" type={"number"} readOnly value={0}></input>
                 </div>
             </form>
-            <form action={'/update-snake-records'} method={"POST"} id={"winrec"}  onSubmit={onSubmit}>
+            <form action={'/update-snake-records'} method={"POST"} id={"winrec"}>
                 <div className={styles["invisinput"]}>
                   <input id="username" name="username" type={"text"} readOnly value={usernameDisplay()}></input>                
                 </div>
