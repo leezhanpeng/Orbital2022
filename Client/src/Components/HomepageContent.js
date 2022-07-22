@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 
 import styles from "../Styles/homepage.module.css"
 import { useCookies } from 'react-cookie';
 
 import profile from "../Assets/profilelogo.png";
 import baseProfilePic from "../Assets/baseprofilepic.png";
-import profilepictest2 from "../Assets/testprofilepic.png"
 
 
 const HomepageContent = () => {
@@ -76,9 +75,9 @@ const HomepageContent = () => {
     return 0;
   }
 
-  const [DPs, setDPs] = useState([{dp: profilepictest2}]);
+  const [DPs, setDPs] = useState([{dp: baseProfilePic}]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const fetchData = async () => {
         const result = await fetch('/all-dp');
         const jsonResult = await result.json();
@@ -113,7 +112,13 @@ const HomepageContent = () => {
                 tetrisRec.map((rec, index) => (
                     <div key={index} className={styles["profile"]}>
                       <label className={styles["ranknumber"]}>{index + 1}</label>
-                      <img src={profilepictest2} className={styles["profilepic"]}></img>
+                      {
+                        DPs.filter(x => x.username === rec.username)[0]
+                        ? (DPs.filter(x => x.username === rec.username)[0].dp != ""
+                          ? <img src={DPs.filter(x => x.username === rec.username)[0].dp} className={styles["profilepic"]}></img>
+                          : <img src={baseProfilePic} className={styles["profilepic"]}></img>)
+                        : null
+                      }
                       <label className={styles["username"]}>{rec.username}</label>
                       <label className={styles["recordtime"]}>{rec.recordTime}</label>
                       <div className={styles["profileiconholder"]}>
