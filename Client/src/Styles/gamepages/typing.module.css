@@ -10,3 +10,7 @@
   height: 580px;
   margin: 120px;
 }
+
+.invisinput {
+  display: none;
+}
