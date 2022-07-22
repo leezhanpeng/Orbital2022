@@ -34,7 +34,7 @@
 }
 
 .leaderboard {
-    width: 38%;
+
     background-color: rgb(255, 249, 240);
     border-radius: 10px;
     box-shadow: 0px 0px 5px;
@@ -45,6 +45,7 @@
     height: 100%;
     position: sticky;
     top: 100px;
+    margin-right: 10px;
 }
 
 .newsbox {
