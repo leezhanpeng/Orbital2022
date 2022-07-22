@@ -14,7 +14,7 @@
     justify-content: center;
     align-items: center;
     height: 100px;
-    width: 100%;
+    width: 1135px;
     background-color: rgb(255, 249, 240);
     border-radius: 10px;
     box-shadow: 0px 0px 5px;
@@ -55,7 +55,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     margin-bottom: 100px;
-    width: 60%;
+    width: 100%;
 }
 
 .leaderboardheader {
@@ -77,7 +77,7 @@
 .recordtime {
     margin-right: 2%;
     width: 25%;
-    font-size: 100%;
+    font-size: 120%;
 }
 
 .gameheader {
@@ -102,18 +102,18 @@
     text-align: center;
 }
 .profilepic {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     margin: 5px 5px 5px 20px;
     border: 1px solid black
 }
 
 .username {
-    font-size: 100%;
+    font-size: 120%;
     width: 40%;
     text-align: center;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .newsheader {
