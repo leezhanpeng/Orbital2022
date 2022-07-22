@@ -4,6 +4,7 @@ import styles from "../Styles/homepage.module.css"
 import { useCookies } from 'react-cookie';
 
 import profile from "../Assets/profilelogo.png";
+import baseProfilePic from "../Assets/baseprofilepic.png";
 import profilepictest2 from "../Assets/testprofilepic.png"
 
 
@@ -44,7 +45,7 @@ const HomepageContent = () => {
       const result = await fetch('/tetris-records');
       const jsonResult = await result.json();
       let tetris = jsonResult.map(timeToMS).filter(x => x.MS !== 0);
-      tetris = tetris.sort(compare).slice(0,5);
+      tetris = tetris.sort(compare).slice(0,10);
       setTetrisRec(tetris);
   }
       fetchData();
@@ -75,6 +76,17 @@ const HomepageContent = () => {
     return 0;
   }
 
+  const [DPs, setDPs] = useState([{dp: profilepictest2}]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+        const result = await fetch('/all-dp');
+        const jsonResult = await result.json();
+        setDPs(jsonResult);
+    }
+        fetchData();
+    });
+  
   return (
     <div>
       <div className={styles["pagecontent"]}>
@@ -97,18 +109,17 @@ const HomepageContent = () => {
               <div className={styles["gameheader"]}>
                 Tetris
               </div>
-
               {
                 tetrisRec.map((rec, index) => (
-                  <div className={styles["profile"]}>
-                    <label className={styles["ranknumber"]}>{index + 1}</label>
-                    <img src={profilepictest2} className={styles["profilepic"]} alt={"profileimg"}></img>
-                    <label className={styles["username"]}>{rec.username}</label>
-                    <label className={styles["recordtime"]}>{rec.recordTime}</label>
-                    <div className={styles["profileiconholder"]}>
-                        <a href={"/profile/" + rec.username}><img className={styles["profileicon"]} src={profile}></img></a>
+                    <div key={index} className={styles["profile"]}>
+                      <label className={styles["ranknumber"]}>{index + 1}</label>
+                      <img src={DPs[0].dp} className={styles["profilepic"]}></img>
+                      <label className={styles["username"]}>{rec.username}</label>
+                      <label className={styles["recordtime"]}>{rec.recordTime}</label>
+                      <div className={styles["profileiconholder"]}>
+                          <a href={"/profile/" + rec.username}><img className={styles["profileicon"]} src={profile}></img></a>
+                      </div>
                     </div>
-                  </div>
                 ))
               }
 

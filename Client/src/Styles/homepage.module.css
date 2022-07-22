@@ -103,8 +103,8 @@
     text-align: center;
 }
 .profilepic {
-    width: 13%;
-    height: 13%;
+    width: 8%;
+    height: 8%;
     margin: 5px 5px 5px 20px;
     border: 1px solid black
 }
@@ -168,6 +168,6 @@
 }
 
 .profileicon {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 }
