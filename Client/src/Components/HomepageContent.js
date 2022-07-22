@@ -45,7 +45,7 @@ const HomepageContent = () => {
       const result = await fetch('/tetris-records');
       const jsonResult = await result.json();
       let tetris = jsonResult.map(timeToMS).filter(x => x.MS !== 0);
-      tetris = tetris.sort(compare).slice(0,10);
+      tetris = tetris.sort(compare).slice(0,5);
       setTetrisRec(tetris);
   }
       fetchData();
@@ -113,7 +113,7 @@ const HomepageContent = () => {
                 tetrisRec.map((rec, index) => (
                     <div key={index} className={styles["profile"]}>
                       <label className={styles["ranknumber"]}>{index + 1}</label>
-                      <img src={DPs[0].dp} className={styles["profilepic"]}></img>
+                      <img src={profilepictest2} className={styles["profilepic"]}></img>
                       <label className={styles["username"]}>{rec.username}</label>
                       <label className={styles["recordtime"]}>{rec.recordTime}</label>
                       <div className={styles["profileiconholder"]}>

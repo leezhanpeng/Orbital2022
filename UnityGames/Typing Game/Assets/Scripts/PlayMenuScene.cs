@@ -13,8 +13,10 @@ public class PlayMenuScene : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-
-        nameText.text = "Original";
+        //nameText.text = "Original";
+        //Uncomment below for testing, uncomment above for pushing
+        int rnd = Random.Range(1000, 9999);
+        nameText.text = rnd.ToString();
     }
     public void ClickPlayGame()
     {

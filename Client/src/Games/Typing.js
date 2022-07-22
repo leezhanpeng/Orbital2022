@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 import Navbar from '../Components/Navbar.js';
 import Footer from '../Components/Footer.js';
@@ -37,7 +37,7 @@ function Typing() {
     return parseJwt(cookies.accesstoken).username;
   }
 
-  const { unityProvider, sendMessage } = useUnityContext({
+  const { unityProvider, sendMessage, addEventListener, removeEventListener } = useUnityContext({
     loaderUrl: "../TypingBuild/WebGLBuildTypingSpeedDemon.loader.js",
     dataUrl: "../TypingBuild/WebGLBuildTypingSpeedDemon.data",
     frameworkUrl: "../TypingBuild/WebGLBuildTypingSpeedDemon.framework.js",
@@ -46,6 +46,26 @@ function Typing() {
 
   function showUsername() {
     sendMessage("PressPlay", "AddName", usernameDisplay());
+  }
+
+  const handleGameOver = useCallback((WPM, wordsTyped, pos) => {
+    document.getElementById("wpm").value = WPM;
+    document.getElementById("wordstyped").value = wordsTyped;
+    document.getElementById("pos").value = pos;
+    document.getElementById("typrec").submit();
+    setTimeout(stopWindow, 2000);
+  }, []);
+
+
+  useEffect(() => {
+    addEventListener("SendWPM", handleGameOver);
+    return () => {
+      removeEventListener("SendWPM", handleGameOver);
+    };
+  }, [addEventListener, removeEventListener, handleGameOver]);
+
+  function stopWindow() {
+    window.stop();
   }
 
   if (auth[0].allowaccess === "checking")
@@ -67,6 +87,20 @@ function Typing() {
             {
               showUsername()
             }
+              <form action={'/update-typing-records'} method={"POST"} id={"typrec"}>
+                <div className={styles["invisinput"]}>
+                  <input id="username" name="username" type={"text"} readOnly value={usernameDisplay()}></input>                
+                </div>
+                <div className={styles["invisinput"]}>
+                  <input id="wpm" name="wpm" type={"text"} readOnly value={0}></input>
+                </div>
+                <div className ={styles["invisinput"]}>
+                  <input id="wordstyped" name="wordstyped" type={"text"} readOnly value={0}></input>
+                </div>
+                <div className ={styles["invisinput"]}>
+                  <input id="pos" name="pos" type={"text"} readOnly value={0}></input>
+                </div>
+            </form>
           </div>
         <Footer />
       </div>

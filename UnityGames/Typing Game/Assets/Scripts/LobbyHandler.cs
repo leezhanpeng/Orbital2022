@@ -33,7 +33,7 @@ public class LobbyHandler : MonoBehaviourPunCallbacks
     public void Update()
     {
         playButton.SetActive(PhotonNetwork.IsMasterClient);
-        scoreSetter.SetActive(PhotonNetwork.IsMasterClient);
+        //scoreSetter.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     public void OnClickCreate()

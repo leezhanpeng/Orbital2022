@@ -221,6 +221,44 @@ app.get('/typing-records', (req, res) => {
             console.log(err);
         });
 })
+
+app.post('/update-typing-records', async (req, res) => {
+    const user = await TypingRecord.findOne({username: req.body.username});
+    let update = false;
+    if (user.recordWPM < req.body.wpm)
+    {
+        update = true;
+    }
+    if (update)
+    {
+        if (parseInt(req.body.pos) == 1)
+        {
+            TypingRecord.updateOne({username: req.body.username}, {$set: {recordWPM: Math.round(req.body.wpm * 100) / 100, wordsCleared: user.wordsCleared + parseInt(req.body.wordstyped), typingWins: user.typingWins + 1}}, (err, res) => {
+            });
+        }
+        else
+        {
+            TypingRecord.updateOne({username: req.body.username}, {$set: {recordWPM: Math.round(req.body.wpm * 100) / 100, wordsCleared: user.wordsCleared + parseInt(req.body.wordstyped)}}, (err, res) => {
+            });
+        }
+        req.header("Data sent.");
+    }
+    else
+    {
+        if (parseInt(req.body.pos) == 1)
+        {
+            TypingRecord.updateOne({username: req.body.username}, {$set: {wordsCleared: user.wordsCleared + parseInt(req.body.wordstyped), typingWins: user.typingWins + 1}}, (err, res) => {
+            });       
+        }
+        else
+        {
+            TypingRecord.updateOne({username: req.body.username}, {$set: {wordsCleared: user.wordsCleared + parseInt(req.body.wordstyped),}}, (err, res) => {
+            }); 
+        }
+        req.header("Data sent.");
+    }
+});
+
 app.get('/snake-records', (req, res) => {
     SnakeRecord.find()
         .then((result) => {
