@@ -5,10 +5,12 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
-
+using System.Runtime.InteropServices;
 
 public class Typer : MonoBehaviourPunCallbacks
 {
+    [DllImport("__Internal")]
+    private static extern void SendWPM(float WPM, short wordsTyped, short pos);
     public WordBank wordBank = null;
     public Text wordOutput = null;
     public Text Points;
@@ -32,6 +34,8 @@ public class Typer : MonoBehaviourPunCallbacks
     public Text endGameCountDownText;
     public Text gameTimeText;
     public Text wpmCounter;
+    public short position = 1;
+    //private Dictionary<string, float> resultList = new Dictionary<string, float>();
     void Start()
     {
         SetCurrentWord();
@@ -54,7 +58,7 @@ public class Typer : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        CheckInput(); // Can put function in FixedUpdate instead so that logic is not bound by frame timings
+        CheckInput(); // Can put function in FixedUpdate instead so that logic is not bound by frame timings... UPDATE: FIXEDUPDATE DONT WORK 
         Points.text = "Points: " + pointCount.ToString();
         if (!inEndScreen)
         { 
@@ -65,6 +69,11 @@ public class Typer : MonoBehaviourPunCallbacks
             BackToRoom();
         }
     }
+
+    //private void FixedUpdate()
+    //{
+    //    CheckInput();
+    //}
 
     private void CheckInput()
     {
@@ -117,12 +126,13 @@ public class Typer : MonoBehaviourPunCallbacks
     {
         if (IsPlayerFinished(GamePointSetter.point))
         {
+            
             gameText.SetActive(false);
             finishText.SetActive(true);
             finishTime.text = "You finished in: " + gameTime.ToString("F2") + "s";
             wpmCounter.text = "WPM: " + CalculateWPM(gameTime, GamePointSetter.point).ToString("F0");
             inEndScreen = true;
-            
+            photonView.RPC("RPC_DisplayResults", RpcTarget.All, userNick, gameTime.ToString("F2") + "s");
         }
         else
         {
@@ -135,20 +145,28 @@ public class Typer : MonoBehaviourPunCallbacks
     {
         finishText.SetActive(false);
         resultsScreen.SetActive(true);
+        photonView.RPC("RPC_IncreasePlayersFinished", RpcTarget.All);
         //photonView.RPC("DisplayResults", RpcTarget.All, userNick, gameTime.ToString("F2") + "s");
-        photonView.RPC("DisplayResults", RpcTarget.All, userNick, gameTime.ToString("F2") + "s");
+        //photonView.RPC("DisplayResults", RpcTarget.All, userNick, gameTime.ToString("F2") + "s");
+    }
+
+    //Below function is just to increase the players finished
+    [PunRPC]
+    public void RPC_IncreasePlayersFinished()
+    {
+        playersFinished++;
     }
 
     [PunRPC]
-    public void DisplayResults(string name, string timing)
+    public void RPC_DisplayResults(string name, string timing)
     {
         ResultItem newResultItem = Instantiate(resultItem, resultsList);
         //newResultItem.SetPlayerResult(PhotonNetwork.NickName,":        " + gameTime.ToString("F2") + "s");
         newResultItem.SetPlayerResult(name,timing);
         //resultsItemList.Add(newResultItem);
-        playersFinished++;
+        position++;
     }
-
+    
     public void BackToRoom()
     {
         if (playersFinished < PhotonNetwork.CurrentRoom.PlayerCount)
@@ -176,6 +194,9 @@ public class Typer : MonoBehaviourPunCallbacks
 
     public float CalculateWPM(float finishTime, short wordsTyped)
     {
-        return 60 * wordsTyped/ finishTime;
+        float WPM = 60 * wordsTyped / finishTime;
+        SendWPM(WPM, wordsTyped, position);
+        return WPM;
     }
+
 }

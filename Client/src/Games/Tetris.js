@@ -73,6 +73,7 @@ function Tetris() {
     document.getElementById("clearedgame").value = ClearedGame;
     document.getElementById("fourlinescleared").value = fourLinesCleared;
     document.getElementById("tetrec").submit();
+    setTimeout(stopWindow, 2000);
   }, []);
 
 
@@ -86,6 +87,7 @@ function Tetris() {
   const handleAddWin = useCallback((winning) => {
     document.getElementById("wincount").value = winning;
     document.getElementById("winrec").submit();
+    setTimeout(stopWindow, 2000);
   }, []);
 
   useEffect(() => {
@@ -95,6 +97,9 @@ function Tetris() {
     };
   }, [addEventListener, removeEventListener, handleAddWin]);
 
+  function stopWindow() {
+    window.stop();
+  }
 
   if (auth[0].allowaccess === "checking")
   {
