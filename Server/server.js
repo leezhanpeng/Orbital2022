@@ -89,7 +89,7 @@ app.post('/user-login', async (req, res) => {
             res.cookie("accesstoken", accessToken, {
                 maxAge: 60 * 60 * 1000 
             });
-            LoginCheck.deleteOne({username: req.body.to}, (err, res) => {
+            LoginCheck.deleteOne({username: req.body.username}, (err, res) => {
             });
             const loginChecking = new LoginCheck(req.body);
             loginChecking.save();
