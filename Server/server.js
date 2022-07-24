@@ -427,6 +427,10 @@ app.post('/delete-friend', (req, res) => {
     res.redirect('/friendslist');
 })
 
+app.post('/search-friend', (req, res) => {
+    res.redirect('/profile/' + req.body.username);
+})
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`server start liao, port ${PORT}`));
