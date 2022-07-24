@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import styles from "../Styles/friendslist.module.css";
 import profile from "../Assets/profilelogo.png";
 import bin from "../Assets/trashbin.png";
@@ -64,6 +64,16 @@ const FriendsList = () => {
 
     });
 
+    const [loginChecks, setloginChecks] = useState([{login:"NIL"}]);
+
+    useLayoutEffect(() => {
+        const fetchData = async () => {
+        const result = await fetch('/all-loginchecks');
+        const jsonResult = await result.json();
+        setloginChecks(jsonResult);
+    }
+        fetchData();
+    });
 
     return (
         <div>
@@ -103,7 +113,11 @@ const FriendsList = () => {
                         friends.map((friend, index) => (
                             <div key={index} className={styles["friend"]}>
                                 <label className={styles["friendusername"]}>{friend}</label>
-                                <label className={styles["location"]}>INPROGRESS</label>
+                                {
+                                    loginChecks.filter(x => x.username === friend)[0]
+                                    ? <label className={styles["location"]}>{loginChecks.filter(x => x.username === friend)[0].createdAt}</label>
+                                    : null
+                                }
                                 <div className={styles["profileiconholder"]}>
                                     <a href={"/profile/" + friend}><img className={styles["profileicon"]} src={profile}></img></a>
                                 </div>
