@@ -141,7 +141,7 @@ const HomepageContent = () => {
           
             <div className={styles["gameleaderboard"]}>
               <div className={styles["gameheader"]}>
-                Tetris 40L Clear
+                Tetris 40L Clear &#40;Best Time&#41;
               </div>
               {
                 tetrisRec.map((rec, index) => (
@@ -166,7 +166,7 @@ const HomepageContent = () => {
             </div>
             <div className={styles["gameleaderboard"]}>
               <div className={styles["gameheader"]}>
-                Typing Speed Demon
+                Typing Speed Demon &#40;Best WPM&#41;
               </div>
               {
                 typingRec.map((rec, index) => (
@@ -191,7 +191,7 @@ const HomepageContent = () => {
             </div>
             <div className={styles["gameleaderboard"]}>
               <div className={styles["gameheader"]}>
-                Snake Battle
+                Snake Battle &#40;Best Time&#41;
               </div>
               {
                 snakeRec.map((rec, index) => (
