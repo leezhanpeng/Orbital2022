@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import styles from "../Styles/friendslist.module.css";
 import profile from "../Assets/profilelogo.png";
 import bin from "../Assets/trashbin.png";
@@ -64,9 +64,16 @@ const FriendsList = () => {
 
     });
 
-    function deleteFriend() {
-        document.getElementById("delete").submit();
+    const [loginChecks, setloginChecks] = useState([{login:"NIL"}]);
+
+    useLayoutEffect(() => {
+        const fetchData = async () => {
+        const result = await fetch('/all-loginchecks');
+        const jsonResult = await result.json();
+        setloginChecks(jsonResult);
     }
+        fetchData();
+    });
 
     return (
         <div>
@@ -84,7 +91,6 @@ const FriendsList = () => {
                 <div className={styles["friendlistbox"]}>
                     <div className={styles["friendlistlabels"]}>
                         <label className={styles["friendlistlabel"]}>Username</label>
-                        <label className={styles["friendlistlabel"]}>Player State</label>
                         <label className={styles["friendlistlabel"]}>Profile</label>
                         <label className={styles["friendlistlabel"]}>Delete</label>
                     </div>
@@ -106,7 +112,6 @@ const FriendsList = () => {
                         friends.map((friend, index) => (
                             <div key={index} className={styles["friend"]}>
                                 <label className={styles["friendusername"]}>{friend}</label>
-                                <label className={styles["location"]}>INPROGRESS</label>
                                 <div className={styles["profileiconholder"]}>
                                     <a href={"/profile/" + friend}><img className={styles["profileicon"]} src={profile}></img></a>
                                 </div>
@@ -118,7 +123,7 @@ const FriendsList = () => {
                                         <input id="to" name="to" type={"text"} value={friend} readOnly></input>
                                     </div>
                                     <div className={styles["biniconholder"]}>
-                                    <button className={styles["button"]}><img className={styles["binicon"]} src={bin}></img></button>
+                                        <button className={styles["button"]}><img className={styles["binicon"]} src={bin}></img></button>
                                     </div>
                                 </form>
                             </div>

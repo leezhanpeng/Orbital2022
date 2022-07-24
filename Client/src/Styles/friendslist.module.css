@@ -5,7 +5,6 @@
     align-items: center;
     padding: 30px 200px 30px 200px;
     flex-direction: column;
-    flex-wrap: wrap;
     background-color: rgb(180, 180, 180);
     height: 90vh;
 }

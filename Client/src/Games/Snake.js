@@ -73,6 +73,7 @@ function Snake() {
     document.getElementById("totalsabo").value = SaboAmt;
     document.getElementById("totalpower").value = PowerUpGet;
     document.getElementById("snkrec").submit();
+    setTimeout(stopWindow, 2000);
   }, []);
 
 
@@ -86,6 +87,7 @@ function Snake() {
   const handleAddWin = useCallback((winning) => {
     document.getElementById("wincount").value = winning;
     document.getElementById("winrec").submit();
+    setTimeout(stopWindow, 2000);
   }, []);
 
   useEffect(() => {
@@ -94,6 +96,11 @@ function Snake() {
       removeEventListener("WinStats", handleAddWin);
     };
   }, [addEventListener, removeEventListener, handleAddWin]);
+
+  function stopWindow() {
+    window.stop();
+  }
+
 
   if (auth[0].allowaccess === "checking")
   {

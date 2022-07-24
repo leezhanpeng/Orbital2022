@@ -34,7 +34,6 @@
 }
 
 .leaderboard {
-    width: 38%;
     background-color: rgb(255, 249, 240);
     border-radius: 10px;
     box-shadow: 0px 0px 5px;
@@ -43,8 +42,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     height: 100%;
-    position: sticky;
-    top: 100px;
+    margin-right: 10px;
 }
 
 .newsbox {
@@ -55,8 +53,8 @@
     flex-direction: column;
     flex-wrap: wrap;
     margin-bottom: 100px;
-    width: 60%;
-    
+    width: 100%;
+    height: 100%;
 }
 
 .leaderboardheader {
@@ -65,7 +63,7 @@
     margin: 10px 0px 10px 0px;
 }
 
-.tetrisleaderboard {
+.gameleaderboard {
     background-color: rgb(189, 189, 189);
     margin: 0px 10px 10px 10px;
     border-radius: 3px;
@@ -78,7 +76,7 @@
 .recordtime {
     margin-right: 2%;
     width: 25%;
-    font-size: 100%;
+    font-size: 110%;
 }
 
 .gameheader {
@@ -103,16 +101,18 @@
     text-align: center;
 }
 .profilepic {
-    width: 8%;
-    height: 8%;
+    width: 60px;
+    height: 60px;
     margin: 5px 5px 5px 20px;
     border: 1px solid black
 }
 
 .username {
-    font-size: 100%;
+    font-size: 110%;
     width: 40%;
     text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .newsheader {
@@ -168,6 +168,6 @@
 }
 
 .profileicon {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }

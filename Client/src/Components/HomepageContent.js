@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 
 import styles from "../Styles/homepage.module.css"
 import { useCookies } from 'react-cookie';
 
 import profile from "../Assets/profilelogo.png";
 import baseProfilePic from "../Assets/baseprofilepic.png";
-import profilepictest2 from "../Assets/testprofilepic.png"
 
 
 const HomepageContent = () => {
@@ -51,6 +50,30 @@ const HomepageContent = () => {
       fetchData();
   });
 
+  const [typingRec, setTypingRec] = useState([]);
+  useEffect(() => {
+      const fetchData = async () => {
+      const result = await fetch('/typing-records');
+      const jsonResult = await result.json();
+      let typing = jsonResult;
+      typing = typing.sort(comparetyping).slice(0,5);
+      setTypingRec(typing);
+  }
+      fetchData();
+  });
+
+  const [snakeRec, setSnakeRec] = useState([]);
+  useEffect(() => {
+      const fetchData = async () => {
+      const result = await fetch('/snake-records');
+      const jsonResult = await result.json();
+      let snake = jsonResult.map(timeToMS).filter(x => x.MS !== 0);
+      snake = snake.sort(compare).slice(0,5);
+      setSnakeRec(snake);
+  }
+      fetchData();
+  });
+
   function timeToMS(tetObj)
   {
     if (tetObj.recordTime !== "NIL")
@@ -66,6 +89,7 @@ const HomepageContent = () => {
     return (tetObj);
   }
 
+
   function compare(a, b) {
     if ( a.MS < b.MS ){
       return -1;
@@ -76,9 +100,19 @@ const HomepageContent = () => {
     return 0;
   }
 
-  const [DPs, setDPs] = useState([{dp: profilepictest2}]);
+  function comparetyping(a, b) {
+    if ( a.recordWPM > b.recordWPM ){
+      return -1;
+    }
+    if ( a.recordWPM < b.recordWPM ){
+      return 1;
+    }
+    return 0;
+  }
 
-    useEffect(() => {
+  const [DPs, setDPs] = useState([{dp: baseProfilePic}]);
+
+    useLayoutEffect(() => {
         const fetchData = async () => {
         const result = await fetch('/all-dp');
         const jsonResult = await result.json();
@@ -105,15 +139,21 @@ const HomepageContent = () => {
             Global Leaderboard
           </div>
           
-            <div className={styles["tetrisleaderboard"]}>
+            <div className={styles["gameleaderboard"]}>
               <div className={styles["gameheader"]}>
-                Tetris
+                Tetris 40L Clear &#40;Best Time&#41;
               </div>
               {
                 tetrisRec.map((rec, index) => (
                     <div key={index} className={styles["profile"]}>
                       <label className={styles["ranknumber"]}>{index + 1}</label>
-                      <img src={profilepictest2} className={styles["profilepic"]}></img>
+                      {
+                        DPs.filter(x => x.username === rec.username)[0]
+                        ? (DPs.filter(x => x.username === rec.username)[0].dp != ""
+                          ? <img src={DPs.filter(x => x.username === rec.username)[0].dp} className={styles["profilepic"]}></img>
+                          : <img src={baseProfilePic} className={styles["profilepic"]}></img>)
+                        : null
+                      }
                       <label className={styles["username"]}>{rec.username}</label>
                       <label className={styles["recordtime"]}>{rec.recordTime}</label>
                       <div className={styles["profileiconholder"]}>
@@ -124,7 +164,56 @@ const HomepageContent = () => {
               }
 
             </div>
+            <div className={styles["gameleaderboard"]}>
+              <div className={styles["gameheader"]}>
+                Typing Speed Demon &#40;Best WPM&#41;
+              </div>
+              {
+                typingRec.map((rec, index) => (
+                    <div key={index} className={styles["profile"]}>
+                      <label className={styles["ranknumber"]}>{index + 1}</label>
+                      {
+                        DPs.filter(x => x.username === rec.username)[0]
+                        ? (DPs.filter(x => x.username === rec.username)[0].dp != ""
+                          ? <img src={DPs.filter(x => x.username === rec.username)[0].dp} className={styles["profilepic"]}></img>
+                          : <img src={baseProfilePic} className={styles["profilepic"]}></img>)
+                        : null
+                      }
+                      <label className={styles["username"]}>{rec.username}</label>
+                      <label className={styles["recordtime"]}>{rec.recordWPM}</label>
+                      <div className={styles["profileiconholder"]}>
+                          <a href={"/profile/" + rec.username}><img className={styles["profileicon"]} src={profile}></img></a>
+                      </div>
+                    </div>
+                ))
+              }
 
+            </div>
+            <div className={styles["gameleaderboard"]}>
+              <div className={styles["gameheader"]}>
+                Snake Battle &#40;Best Time&#41;
+              </div>
+              {
+                snakeRec.map((rec, index) => (
+                    <div key={index} className={styles["profile"]}>
+                      <label className={styles["ranknumber"]}>{index + 1}</label>
+                      {
+                        DPs.filter(x => x.username === rec.username)[0]
+                        ? (DPs.filter(x => x.username === rec.username)[0].dp != ""
+                          ? <img src={DPs.filter(x => x.username === rec.username)[0].dp} className={styles["profilepic"]}></img>
+                          : <img src={baseProfilePic} className={styles["profilepic"]}></img>)
+                        : null
+                      }
+                      <label className={styles["username"]}>{rec.username}</label>
+                      <label className={styles["recordtime"]}>{rec.recordTime}</label>
+                      <div className={styles["profileiconholder"]}>
+                          <a href={"/profile/" + rec.username}><img className={styles["profileicon"]} src={profile}></img></a>
+                      </div>
+                    </div>
+                ))
+              }
+
+            </div>
             
           
 

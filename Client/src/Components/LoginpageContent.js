@@ -16,7 +16,7 @@ const LoginPageContent = () => {
                 </div>
             </a>
             <div className={styles["info"]}>
-                As at 8:38pm, 2nd July, we have deleted all accounts that were created before. Please create a new one. Thank you.
+                Prior to Milestone 3, we have deleted all accounts that were created before. Please create a new one. Thank you.
             </div>
             <div className={styles["loginbox"]}>
                 <div className={styles["header"]}>

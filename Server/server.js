@@ -88,7 +88,6 @@ app.post('/user-login', async (req, res) => {
             res.cookie("accesstoken", accessToken, {
                 maxAge: 60 * 60 * 1000 
             });
-
             res.redirect("/home");
         }
         else
@@ -194,13 +193,13 @@ app.post('/update-tetris-records', async (req, res) => {
         {
             TetrisRecord.updateOne({username: req.body.username}, {$set: {totalLinesCleared: setLines, recordTime: timing, total40LinesFinished: setGameFinished, tetrisesCleared: setTetrisesCleared}}, (err, res) => {
             });
-            req.header("Data sent.");
+            res.status(200);
         }
         else
         {
             TetrisRecord.updateOne({username: req.body.username}, {$set: {totalLinesCleared: setLines, total40LinesFinished: setGameFinished, tetrisesCleared: setTetrisesCleared}}, (err, res) => {
             });
-            req.header("Data sent.");
+            res.status(200);
         }
     }
     else
@@ -208,7 +207,7 @@ app.post('/update-tetris-records', async (req, res) => {
         const setWins = parseInt(req.body.wincount) + user.tetrisWins;
         TetrisRecord.updateOne({username: req.body.username}, {$set: {tetrisWins: setWins}}, (err, res) => {
         });
-        req.header("Data sent.");
+        res.status(200);
     }
 });
 
@@ -235,27 +234,29 @@ app.post('/update-typing-records', async (req, res) => {
         {
             TypingRecord.updateOne({username: req.body.username}, {$set: {recordWPM: Math.round(req.body.wpm * 100) / 100, wordsCleared: user.wordsCleared + parseInt(req.body.wordstyped), typingWins: user.typingWins + 1}}, (err, res) => {
             });
+            res.status(200);
         }
         else
         {
             TypingRecord.updateOne({username: req.body.username}, {$set: {recordWPM: Math.round(req.body.wpm * 100) / 100, wordsCleared: user.wordsCleared + parseInt(req.body.wordstyped)}}, (err, res) => {
             });
+            res.status(200);
         }
-        req.header("Data sent.");
     }
     else
     {
         if (parseInt(req.body.pos) == 1)
         {
             TypingRecord.updateOne({username: req.body.username}, {$set: {wordsCleared: user.wordsCleared + parseInt(req.body.wordstyped), typingWins: user.typingWins + 1}}, (err, res) => {
-            });       
+            });
+            res.status(200);    
         }
         else
         {
             TypingRecord.updateOne({username: req.body.username}, {$set: {wordsCleared: user.wordsCleared + parseInt(req.body.wordstyped),}}, (err, res) => {
-            }); 
+            });
+            res.status(200);
         }
-        req.header("Data sent.");
     }
 });
 
@@ -318,13 +319,13 @@ app.post('/update-snake-records', async (req, res) => {
         {
             SnakeRecord.updateOne({username: req.body.username}, {$set: {recordTime: timing, recordLength: setRecordLengthCleared, jewelsCollected: setJewels, sabosGiven: setSabos, powerupsReceived: setPower}}, (err, res) => {
             });
-            req.header("Data sent.");
+            res.status(200);
         }
         else
         {
             SnakeRecord.updateOne({username: req.body.username}, {$set: {recordLength: setRecordLengthCleared, jewelsCollected: setJewels, sabosGiven: setSabos, powerupsReceived: setPower}}, (err, res) => {
             });
-            req.header("Data sent.");
+            res.status(200);
         }
     }
     else
@@ -332,8 +333,9 @@ app.post('/update-snake-records', async (req, res) => {
         const setWins = parseInt(req.body.wincount) + user.snakeWins;
         SnakeRecord.updateOne({username: req.body.username}, {$set: {snakeWins: setWins}}, (err, res) => {
         });
-        req.header("Data sent.");
+        res.status(200);
     }
+
 });
 
 
