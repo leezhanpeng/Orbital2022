@@ -75,7 +75,6 @@ app.post('/new-user', async (req, res) => {
         res.redirect("/signupdupuser");
     }
 })
-const LoginCheck = require('./schemas/login.js');
 
 app.post('/user-login', async (req, res) => {
     const user = await User.findOne({username: req.body.username});
@@ -89,10 +88,6 @@ app.post('/user-login', async (req, res) => {
             res.cookie("accesstoken", accessToken, {
                 maxAge: 60 * 60 * 1000 
             });
-            LoginCheck.deleteOne({username: req.body.username}, (err, res) => {
-            });
-            const loginChecking = new LoginCheck(req.body);
-            loginChecking.save();
             res.redirect("/home");
         }
         else
@@ -430,16 +425,6 @@ app.post('/delete-friend', (req, res) => {
     User.updateOne({username: req.body.from}, {$pull: {friends: req.body.to}}, (err, res) => {
     });
     res.redirect('/friendslist');
-})
-
-app.get('/all-loginchecks', (req, res) => {
-    LoginCheck.find()
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
 })
 
 const PORT = process.env.PORT || 5000;

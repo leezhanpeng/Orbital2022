@@ -91,7 +91,6 @@ const FriendsList = () => {
                 <div className={styles["friendlistbox"]}>
                     <div className={styles["friendlistlabels"]}>
                         <label className={styles["friendlistlabel"]}>Username</label>
-                        <label className={styles["friendlistlabel"]}>Player State</label>
                         <label className={styles["friendlistlabel"]}>Profile</label>
                         <label className={styles["friendlistlabel"]}>Delete</label>
                     </div>
@@ -113,11 +112,6 @@ const FriendsList = () => {
                         friends.map((friend, index) => (
                             <div key={index} className={styles["friend"]}>
                                 <label className={styles["friendusername"]}>{friend}</label>
-                                {
-                                    loginChecks.filter(x => x.username === friend)[0]
-                                    ? <label className={styles["location"]}>{loginChecks.filter(x => x.username === friend)[0].createdAt}</label>
-                                    : null
-                                }
                                 <div className={styles["profileiconholder"]}>
                                     <a href={"/profile/" + friend}><img className={styles["profileicon"]} src={profile}></img></a>
                                 </div>
