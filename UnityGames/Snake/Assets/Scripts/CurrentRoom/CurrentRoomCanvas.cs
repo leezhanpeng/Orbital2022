@@ -27,9 +27,15 @@ public class CurrentRoomCanvas : MonoBehaviourPunCallbacks
             // MainCanvasManager.Instance.GameCanvas.transform.SetAsLastSibling();
             // game.SetActive(true);
             // endGameCanvas.SetActive(true);
-            base.photonView.RPC("RPC_LoadGameOthers", RpcTarget.Others);
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
-
+            if (PhotonNetwork.CurrentRoom.PlayerCount != 1)
+            {
+                base.photonView.RPC("RPC_LoadGameOthers", RpcTarget.Others);
+            }
+            Scene scene = SceneManager.GetSceneByBuildIndex(1);
+            if (!(scene.name == "Snake" && scene.isLoaded))
+            {
+                SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            }
         }
         // }
         // else
@@ -44,6 +50,10 @@ public class CurrentRoomCanvas : MonoBehaviourPunCallbacks
         // game.SetActive(true);
         // MainCanvasManager.Instance.GameCanvas.transform.SetAsLastSibling();
         // endGameCanvas.SetActive(true);
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        Scene scene = SceneManager.GetSceneByBuildIndex(1);
+        if (!(scene.name == "Snake" && scene.isLoaded))
+        {
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        }
     }
 }

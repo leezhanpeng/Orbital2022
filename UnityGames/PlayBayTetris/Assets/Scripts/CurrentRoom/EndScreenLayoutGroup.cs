@@ -63,7 +63,7 @@ public class EndScreenLayoutGroup : MonoBehaviourPunCallbacks
         endGameListing.ApplyEndGameStats(name, time, success);
 
         EndGameListings.Add(endGameListing);
-        numberOfPlayersLeft.text = "Number of players remaining: " + (PhotonNetwork.PlayerList.Length - completedPlayers).ToString();
+        numberOfPlayersLeft.text = "Number of players remaining: " + (PhotonNetwork.CurrentRoom.PlayerCount - completedPlayers).ToString();
         if (numberOfPlayersLeft.text == "Number of players remaining: 0")
         {
             loadingCircle.SetActive(false);
